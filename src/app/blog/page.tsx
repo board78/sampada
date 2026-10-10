@@ -24,7 +24,7 @@ type BlogCard = {
 
 function BlogCardSkeleton() {
   return (
-    <div className="animate-pulse rounded-2xl border border-white/8 bg-white/[0.03] overflow-hidden">
+    <div className="animate-pulse rounded-2xl border border-white/8 bg-white/3 overflow-hidden">
       <div className="h-48 bg-white/8" />
       <div className="p-5 space-y-3">
         <div className="h-3 w-20 bg-white/8 rounded-full" />
@@ -47,7 +47,7 @@ function BlogCard({ post }: { post: BlogCard }) {
       className="group flex flex-col rounded-2xl border border-white/10 bg-[#14070f] overflow-hidden transition-all duration-300 hover:border-amber-500/30 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
     >
       {/* Thumbnail */}
-      <div className="relative h-48 overflow-hidden bg-gradient-to-br from-amber-900/30 to-orange-900/20">
+      <div className="relative h-48 overflow-hidden bg-linear-to-br from-amber-900/30 to-orange-900/20">
         {post.thumbnail ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -88,7 +88,7 @@ function BlogCard({ post }: { post: BlogCard }) {
 
         <div className="mt-auto pt-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-[10px] font-bold text-[#1a0900]">
+            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-orange-500 text-[10px] font-bold text-[#1a0900]">
               {post.author.slice(0, 1).toUpperCase()}
             </span>
             <span className="text-xs text-zinc-500">{post.author}</span>
@@ -169,7 +169,7 @@ export default function BlogPage() {
     : posts;
 
   return (
-    <div className="sl-blog-page royal-surface royal-grid min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="sl-blog-page royal-surface royal-grid min-h-screen bg-background text-foreground">
       <Navbar
         user={user}
         onAuthChange={(u) => { setUser(u); if (!u) router.push("/"); }}
@@ -216,7 +216,7 @@ export default function BlogPage() {
                     href={`/blog/${featured[featuredIndex].slug || featured[featuredIndex]._id}`}
                     className="relative flex flex-col sm:flex-row"
                   >
-                    <div className="relative h-56 sm:h-auto sm:w-1/2 overflow-hidden bg-gradient-to-br from-amber-900/30 to-orange-900/20">
+                    <div className="relative h-56 sm:h-auto sm:w-1/2 overflow-hidden bg-linear-to-br from-amber-900/30 to-orange-900/20">
                       {featured[featuredIndex].thumbnail ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={featured[featuredIndex].thumbnail} alt={featured[featuredIndex].title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -238,7 +238,7 @@ export default function BlogPage() {
                       </h2>
                       <p className="mt-3 text-sm leading-relaxed text-zinc-500 line-clamp-3">{featured[featuredIndex].excerpt}</p>
                       <div className="mt-5 flex items-center gap-3">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-[11px] font-bold text-[#1a0900]">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-orange-500 text-[11px] font-bold text-[#1a0900]">
                           {featured[featuredIndex].author.slice(0, 1).toUpperCase()}
                         </span>
                         <span className="text-xs text-zinc-500">{featured[featuredIndex].author}</span>

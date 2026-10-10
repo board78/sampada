@@ -62,7 +62,7 @@ export default function BlogPostPage() {
   }) : "";
 
   return (
-    <div className="sl-blog-page royal-surface royal-grid min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+    <div className="sl-blog-page royal-surface royal-grid min-h-screen bg-background text-foreground">
       <Navbar
         user={user}
         onAuthChange={(u) => { setUser(u); if (!u) router.push("/"); }}
@@ -110,7 +110,7 @@ export default function BlogPostPage() {
               {post.category}
             </span>
             {post.featured && (
-              <span className="rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
+              <span className="rounded-full bg-linear-to-r from-amber-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
                 ★ Featured
               </span>
             )}
@@ -123,7 +123,7 @@ export default function BlogPostPage() {
 
           {/* Author row */}
           <div className="mt-5 flex flex-wrap items-center gap-3 border-b border-white/8 pb-5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-xs font-bold text-[#1a0900]">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-amber-400 to-orange-500 text-xs font-bold text-[#1a0900]">
               {post.author.slice(0, 1).toUpperCase()}
             </span>
             <div>
