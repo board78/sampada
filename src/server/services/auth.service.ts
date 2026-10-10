@@ -303,6 +303,31 @@ export async function getSessionUser(request: NextRequest): Promise<SafeUser | n
   }
 }
 
+export async function getServerSessionUser(): Promise<SafeUser | null> {
+  const { cookies } = await import("next/headers");
+  const cookieStore = await cookies();
+  const raw = cookieStore.get(SESSION_COOKIE)?.value;
+  if (!raw) return null;
+
+  const [payload, signature] = raw.split(".");
+  if (!payload || !signature || !safeCompare(signature, hmac(payload))) return null;
+
+  try {
+    const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as {
+      userId?: string;
+      exp?: number;
+    };
+    if (!parsed.userId || !parsed.exp || parsed.exp < Math.floor(Date.now() / 1000)) return null;
+    if (!ObjectId.isValid(parsed.userId)) return null;
+
+    const db = await getDb();
+    const user = await db.collection<UserDoc>("users").findOne({ _id: new ObjectId(parsed.userId) });
+    return user ? toSafeUser(user) : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function getProfile(userId: string) {
   const db = await getDb();
   const userObjectId = new ObjectId(userId);

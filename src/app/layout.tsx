@@ -9,11 +9,12 @@ import { AuthProvider } from "@/components/AuthProvider";
 import StoreProvider from "@/lib/store/StoreProvider";
 import { cookies } from "next/headers";
 import type { SafeUser } from "@/lib/auth";
+import { getServerSessionUser } from "@/lib/auth";
 import "./globals.css";
 
 function getSiteUrl(): URL {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (raw) return new URL(raw);
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.VERCEL_URL?.trim();
+  if (raw) return new URL(raw.startsWith("http") ? raw : `https://${raw}`);
   return new URL("http://localhost:3000");
 }
 
@@ -125,18 +126,13 @@ export const metadata: Metadata = {
 };
 
 async function getUser(): Promise<SafeUser | null> {
-  const baseUrl = getSiteUrl().toString().replace(/\/$/, "");
   try {
-    const cookieStore = await cookies();
-    const cookieStr = cookieStore.getAll().map((c: any) => `${c.name}=${c.value}`).join('; ');
-    const res = await fetch(`${baseUrl}/api/profile`, {
-      headers: { cookie: cookieStr },
-      cache: "no-store"
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    return data?.user || null;
-  } catch {
+    return await getServerSessionUser();
+  } catch (error: any) {
+    if (error?.digest === "DYNAMIC_SERVER_USAGE") {
+      throw error;
+    }
+    console.error("Failed to get session user in layout:", error);
     return null;
   }
 }
