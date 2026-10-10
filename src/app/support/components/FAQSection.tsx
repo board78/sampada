@@ -27,7 +27,7 @@ function FAQItem({ q, a, index, isOpen, onToggle }: { q: string; a: string; inde
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, ease: "easeOut" }}
-      className={`group relative overflow-hidden rounded-2xl border border-transparent p-[1px] transition-all duration-300 ${isOpen ? "shadow-[0_0_20px_rgba(245,158,11,0.15)]" : ""}`}
+      className={`group relative overflow-hidden rounded-2xl border border-transparent p-px transition-all duration-300 ${isOpen ? "shadow-[0_0_20px_rgba(245,158,11,0.15)]" : ""}`}
     >
       <div className={`absolute inset-0 bg-linear-to-br from-amber-400/20 via-transparent to-white/5 opacity-0 transition-opacity duration-500 ${isOpen ? "opacity-100" : "group-hover:opacity-100"}`} />
       

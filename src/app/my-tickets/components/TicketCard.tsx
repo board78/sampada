@@ -33,11 +33,11 @@ export function TicketCard({ ticket, index }: TicketCardProps) {
         delay: index * 0.1 
       }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="group relative overflow-hidden rounded-3xl p-[1px]"
+      className="group relative overflow-hidden rounded-3xl p-px"
     >
       {/* Animated Gradient Border Layer */}
       <div className="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-white/5 opacity-50 transition-opacity duration-500 group-hover:opacity-100" />
-      <div className="absolute -inset-[100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_50%,#f59e0b_100%)] opacity-0 transition-opacity duration-500 group-hover:opacity-30" />
+      <div className="absolute -inset-full animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_50%,#f59e0b_100%)] opacity-0 transition-opacity duration-500 group-hover:opacity-30" />
       
       {/* Inner Card */}
       <div className="royal-panel relative h-full rounded-3xl border border-transparent bg-linear-to-br from-[#1c0d17] to-[#12040c] p-6 shadow-xl backdrop-blur-xl">
