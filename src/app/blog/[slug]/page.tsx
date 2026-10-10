@@ -42,7 +42,7 @@ export default function BlogPostPage() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    fetch("/api/profile").then(r => r.ok ? r.json() : null).then(d => { if (d?.user) setUser(d.user); }).catch(() => {});
+    fetch("/api/profile", { cache: "no-store", headers: { "Cache-Control": "no-cache" } }).then(r => r.ok ? r.json() : null).then(d => { if (d?.user) setUser(d.user); }).catch(() => {});
   }, []);
 
   useEffect(() => {

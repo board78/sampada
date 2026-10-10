@@ -47,7 +47,7 @@ export function AuthProvider({
   const fetchUser = async () => {
     dispatch(setLoading(true));
     try {
-      const res = await fetch("/api/profile");
+      const res = await fetch("/api/profile", { cache: "no-store", headers: { "Cache-Control": "no-cache" } });
       if (res.ok) {
         const data = await res.json();
         dispatch(setReduxUser(data?.user || null));

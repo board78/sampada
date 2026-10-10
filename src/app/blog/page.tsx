@@ -125,7 +125,7 @@ export default function BlogPage() {
   }, [featured.length]);
 
   useEffect(() => {
-    fetch("/api/profile").then(r => r.ok ? r.json() : null).then(d => { if (d?.user) setUser(d.user); }).catch(() => {});
+    fetch("/api/profile", { cache: "no-store", headers: { "Cache-Control": "no-cache" } }).then(r => r.ok ? r.json() : null).then(d => { if (d?.user) setUser(d.user); }).catch(() => {});
   }, []);
 
   const fetchPosts = useCallback(async () => {
