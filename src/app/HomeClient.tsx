@@ -15,6 +15,8 @@ import { PopularDrawsSection } from "@/components/features/home/PopularDrawsSect
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { Footer } from "@/components/Footer";
 import { VerticalImageCarousel } from "@/components/VerticalImageCarousel";
+import { ReactLenis } from 'lenis/react';
+import 'lenis/dist/lenis.css';
 
 import { siteCopy, type Language } from "@/app/siteCopy";
 import type { DrawSummaryPublic } from "@/lib/draws";
@@ -95,9 +97,9 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
     <div className="royal-surface royal-grid royal-frame relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-8rem] top-[-6rem] h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
-        <div className="absolute right-[-10rem] top-[8rem] h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
-        <div className="absolute bottom-[-12rem] left-[20%] h-[26rem] w-[26rem] rounded-full bg-amber-300/12 blur-3xl" />
+        <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
+        <div className="absolute -right-40 top-32 h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
+        <div className="absolute -bottom-48 left-[20%] h-104 w-104 rounded-full bg-amber-300/12 blur-3xl" />
       </div>
 
       {/* SEO: Visually hidden H1 — readable by Google, invisible to users.
@@ -108,20 +110,21 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
         <div className="flex h-full flex-col bg-[#17060d]/90 backdrop-blur-xl">
           <HeaderBar {...headerBarProps} />
 
-          <div className="mx-auto w-full max-w-[1800px] min-h-0 flex-1 px-4 pb-4 md:px-5 md:pb-5 lg:px-6 lg:pb-6">
-            <section className="hide-scrollbar h-full overflow-y-auto p-5 md:p-7">
+          <div className="mx-auto w-full max-w-450 min-h-0 flex-1 px-4 pb-4 md:px-5 md:pb-5 lg:px-6 lg:pb-6">
+            <ReactLenis options={{ duration: 1.2, smoothWheel: true }} className="hide-scrollbar h-full overflow-y-auto">
+              <section className="p-5 md:p-7">
               <div className="grid gap-3 sm:gap-4 xl:grid-cols-[minmax(0,1.2fr)_290px] xl:items-start">
 
                 {/* ── LEFT COLUMN ─────────────────────────────────────────── */}
                 <div className="flex min-w-0 flex-col gap-3 sm:gap-4">
                   {/* Hero carousel — static import, no data needed */}
-                  <section className="royal-panel royal-panel-strong sl-hero-outline relative w-full overflow-hidden rounded-[24px] border-2 border-amber-500/35 bg-transparent px-5 pb-3 pt-5 sm:rounded-[28px] sm:px-6 sm:pt-6">
+                  <section className="royal-panel royal-panel-strong sl-hero-outline relative w-full overflow-hidden rounded-3xl border-2 border-amber-500/35 bg-transparent px-5 pb-3 pt-5 sm:rounded-[28px] sm:px-6 sm:pt-6">
                     <div className="relative flex w-full flex-col items-center gap-4">
                       <div className="">
                         <VerticalImageCarousel className="p-0" intervalMs={3000} />
                       </div>
                       <div className="w-full max-w-4xl text-center">
-                        <p className="mx-auto mt-4 max-w-3xl text-[10px] leading-4 font-medium text-[var(--foreground)] opacity-[0.92] sm:text-xs sm:leading-6 md:text-sm">
+                        <p className="mx-auto mt-4 max-w-3xl text-[10px] leading-4 font-medium text-foreground opacity-[0.92] sm:text-xs sm:leading-6 md:text-sm">
                           {currentCopy.heroDescription}
                         </p>
                       </div>
@@ -166,7 +169,8 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
 
               {/* Footer */}
               <Footer language={language} />
-            </section>
+              </section>
+            </ReactLenis>
           </div>
         </div>
       </main>

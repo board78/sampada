@@ -5,6 +5,10 @@ import { ThemeSync } from "@/components/ThemeSync";
 import { FacebookPixelProvider } from "@/components/FacebookPixelProvider";
 import { RegistrationPopup } from "@/components/RegistrationPopup";
 import { FloatingChatBox } from "@/components/FloatingChatBox";
+import { AuthProvider } from "@/components/AuthProvider";
+import StoreProvider from "@/lib/store/StoreProvider";
+import { cookies } from "next/headers";
+import type { SafeUser } from "@/lib/auth";
 import "./globals.css";
 
 function getSiteUrl(): URL {
@@ -120,11 +124,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getUser(): Promise<SafeUser | null> {
+  const baseUrl = getSiteUrl().toString().replace(/\/$/, "");
+  try {
+    const cookieStore = await cookies();
+    const cookieStr = cookieStore.getAll().map((c: any) => `${c.name}=${c.value}`).join('; ');
+    const res = await fetch(`${baseUrl}/api/profile`, {
+      headers: { cookie: cookieStr },
+      cache: "no-store"
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.user || null;
+  } catch {
+    return null;
+  }
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -210,9 +232,13 @@ export default function RootLayout({
         <ThemeSync />
         <AppToaster />
         <FacebookPixelProvider />
-        {children}
-        <RegistrationPopup />
-        <FloatingChatBox />
+        <StoreProvider initialUser={user}>
+          <AuthProvider initialUser={user}>
+            {children}
+            <RegistrationPopup />
+            <FloatingChatBox />
+          </AuthProvider>
+        </StoreProvider>
         <GoogleAnalytics gaId="G-XB00843X9G" />
       </body>
     </html>

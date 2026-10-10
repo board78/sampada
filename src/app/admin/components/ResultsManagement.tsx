@@ -71,7 +71,7 @@ export function ResultsManagement() {
         <button
           type="button"
           onClick={() => setDeclareOpen(true)}
-          className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-md transition hover:from-amber-400 hover:to-orange-400"
+          className="flex items-center gap-2 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 px-4 py-2.5 text-xs font-bold text-white shadow-md transition hover:from-amber-400 hover:to-orange-400"
         >
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden>
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -86,11 +86,11 @@ export function ResultsManagement() {
       {loading ? (
         <div className="space-y-3">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="h-20 animate-pulse rounded-2xl border border-white/8 bg-white/[0.03]" />
+            <div key={i} className="h-20 animate-pulse rounded-2xl border border-white/8 bg-white/3" />
           ))}
         </div>
       ) : results.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-white/12 bg-white/[0.02] px-6 py-16 text-center flex flex-col items-center justify-center">
+        <div className="rounded-2xl border border-dashed border-white/12 bg-white/2 px-6 py-16 text-center flex flex-col items-center justify-center">
           <div className="text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,0.3)] p-4 bg-white/5 rounded-full border border-white/5 flex items-center justify-center mb-3">
             <FaTrophy className="w-8 h-8" />
           </div>
@@ -109,7 +109,7 @@ export function ResultsManagement() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, x: -16 }}
                   transition={{ duration: 0.22, delay: i * 0.04 }}
-                  className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3.5 transition hover:border-white/18"
+                  className="flex flex-col sm:flex-row sm:items-center gap-4 rounded-2xl border border-white/10 bg-white/2 px-4 py-3.5 transition hover:border-white/18"
                 >
                   {/* User Avatar or Trophy icon */}
                   {result.winnerImage ? (
@@ -161,7 +161,7 @@ export function ResultsManagement() {
                       disabled={isActioning}
                       onClick={() => setEditTarget(result)}
                       title="Edit result"
-                      className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/12 bg-white/[0.04] text-zinc-400 transition hover:border-amber-400/35 hover:bg-amber-400/10 hover:text-amber-300 disabled:opacity-40"
+                      className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/12 bg-white/4 text-zinc-400 transition hover:border-amber-400/35 hover:bg-amber-400/10 hover:text-amber-300 disabled:opacity-40"
                     >
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />

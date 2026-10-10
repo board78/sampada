@@ -1,28 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { getCart } from "@/app/cart/cartStorage";
+import { useMemo, useEffect, useState } from "react";
+import { useAppSelector } from "@/lib/store/hooks";
 
 export function CartNavButton() {
-  const [count, setCount] = useState(0);
-
+  const [mounted, setMounted] = useState(false);
+  const items = useAppSelector((state) => state.cart.items);
+  const count = useMemo(() => items.reduce((sum, item) => sum + item.ticketNumbers.length, 0), [items]);
+  
   useEffect(() => {
-    const sync = () => {
-      const cart = getCart();
-      const total = cart.items.reduce((sum, item) => sum + item.ticketNumbers.length, 0);
-      setCount(total);
-    };
-    sync();
-    window.addEventListener("subhlaxmi_cart_updated", sync);
-    window.addEventListener("storage", sync);
-    return () => {
-      window.removeEventListener("subhlaxmi_cart_updated", sync);
-      window.removeEventListener("storage", sync);
-    };
+    setMounted(true);
   }, []);
 
-  const label = useMemo(() => (count > 0 ? `Cart (${count})` : "Cart"), [count]);
+  const label = useMemo(() => (mounted && count > 0 ? `Cart (${count})` : "Cart"), [count, mounted]);
 
   return (
     <Link
@@ -55,7 +46,7 @@ export function CartNavButton() {
         />
       </svg>
 
-      {count > 0 ? (
+      {mounted && count > 0 ? (
         <span className="absolute -right-1 -top-1 rounded-full bg-amber-300 px-1.5 py-0.5 text-[10px] font-bold text-[#2d1400]">
           {count > 99 ? "99+" : count}
         </span>

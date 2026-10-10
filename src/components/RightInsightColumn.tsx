@@ -53,18 +53,18 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className="royal-panel sl-insight-column flex w-full min-w-0 flex-col gap-3 rounded-[24px] border border-white/10 bg-[#140912] p-4 sm:gap-3.5 sm:rounded-[28px] sm:p-4"
+      className="royal-panel sl-insight-column flex w-full min-w-0 flex-col gap-3 rounded-3xl border border-white/10 bg-[#140912] p-4 sm:gap-3.5 sm:rounded-[28px] sm:p-4"
     >
       {/* Goddess illustration */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-amber-300/15 bg-[radial-gradient(circle_at_top,rgba(255,191,36,0.08),transparent_50%),#1a0f14]">
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-amber-300/15 bg-[radial-gradient(circle_at_top,rgba(255,191,36,0.08),transparent_50%),#1a0f14]">
         <Image src="/goddesslaxmi.png" alt="Goddess Laxmi illustration" fill priority sizes="(max-width: 1279px) 100vw, 320px" className="object-contain p-3 sm:p-3.5" />
       </div>
 
       {/* Testimonials */}
       <div className="relative flex w-full flex-col gap-3 overflow-hidden rounded-2xl border border-amber-300/12 bg-[#0c0812] px-3 py-3.5 sm:px-4 sm:py-4">
-        <canvas ref={testimonialCanvasRef} className="pointer-events-none absolute inset-0 z-[2] h-full w-full" aria-hidden />
+        <canvas ref={testimonialCanvasRef} className="pointer-events-none absolute inset-0 z-2 h-full w-full" aria-hidden />
 
-        <div className="relative z-[5] flex flex-col gap-3">
+        <div className="relative z-5 flex flex-col gap-3">
           <div>
             <p className="text-[9px] uppercase tracking-[0.18em] text-zinc-500 sm:text-[10px]">{currentCopy.testimonialLabel}</p>
             <h3 className="mt-1 text-sm font-semibold leading-snug text-white sm:text-base">{currentCopy.testimonialTitle}</h3>
@@ -81,7 +81,7 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
               className="flex flex-col rounded-xl border border-white/8 bg-black/30 p-2.5 sm:p-3.5"
             >
               <div className="flex items-start gap-2">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-300 to-orange-500 text-[11px] font-bold text-[#301000] sm:h-9 sm:w-9 sm:text-xs">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-amber-300 to-orange-500 text-[11px] font-bold text-[#301000] sm:h-9 sm:w-9 sm:text-xs">
                   {active.name.slice(0, 1)}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -115,7 +115,7 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
 
       {/* Countdown */}
       {nextDraw && (
-        <div className="sl-mega-countdown rounded-2xl border border-amber-400/25 bg-gradient-to-br from-[#2a1810] via-[#1a0f0e] to-[#0f0908] px-3 py-3.5 shadow-[inset_0_1px_0_rgba(251,191,36,0.12)] sm:px-4 sm:py-4">
+        <div className="sl-mega-countdown rounded-2xl border border-amber-400/25 bg-linear-to-br from-[#2a1810] via-[#1a0f0e] to-[#0f0908] px-3 py-3.5 shadow-[inset_0_1px_0_rgba(251,191,36,0.12)] sm:px-4 sm:py-4">
           <p className="sl-countdown-kicker text-[10px] font-semibold uppercase tracking-[0.16em] text-amber-200/90 sm:text-xs">{currentCopy.countdownTitle}</p>
           <div className="mt-2 flex gap-1.5 sm:gap-2">
             <TimeBox value={countdown.days} label={currentCopy.days} />

@@ -5,6 +5,7 @@ import { HeaderBar } from "./HeaderBar";
 import { ProfilePanel } from "./ProfilePanel";
 import { AuthModal } from "./AuthModal";
 import type { SafeUser } from "@/lib/auth";
+import { useAuth } from "./AuthProvider";
 
 const defaultMenu = ["Home", "My Tickets", "Live Results", "Support", "Blog"] as const;
 
@@ -13,7 +14,13 @@ interface NavbarProps {
   onAuthChange?: (user: SafeUser | null) => void;
 }
 
-export function Navbar({ user, onAuthChange }: NavbarProps) {
+export function Navbar({ user: propUser, onAuthChange }: NavbarProps) {
+  const { user: authUser, setUser: setAuthUser } = useAuth();
+  
+  // Use propUser if provided (for backwards compatibility with server components passing it down)
+  // Otherwise use the global authUser
+  const user = propUser !== undefined ? propUser : authUser;
+  
   const [showAuth, setShowAuth] = useState(false);
   const [authMode, setAuthMode] = useState<"signin" | "register">("signin");
   const [showProfile, setShowProfile] = useState(false);
@@ -32,7 +39,20 @@ export function Navbar({ user, onAuthChange }: NavbarProps) {
 
   const handleAuthSuccess = (newUser: SafeUser) => {
     setShowAuth(false);
-    onAuthChange?.(newUser);
+    if (onAuthChange) {
+      onAuthChange(newUser);
+    } else {
+      setAuthUser(newUser);
+    }
+  };
+
+  const handleUserUpdated = (updated: SafeUser | null) => {
+    if (onAuthChange) {
+      onAuthChange(updated);
+    } else {
+      setAuthUser(updated);
+    }
+    if (!updated) setShowProfile(false);
   };
 
   return (
@@ -61,10 +81,7 @@ export function Navbar({ user, onAuthChange }: NavbarProps) {
           open={showProfile}
           user={user}
           onClose={() => setShowProfile(false)}
-          onUserUpdated={(updated) => {
-            onAuthChange?.(updated);
-            if (!updated) setShowProfile(false);
-          }}
+          onUserUpdated={handleUserUpdated}
         />
       )}
 

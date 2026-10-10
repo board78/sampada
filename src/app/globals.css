@@ -79,7 +79,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
 }
 
 /* The support screen owns the only vertical scroll area. Keeping the document
@@ -839,3 +838,20 @@ input[type="reset"]:disabled { cursor: not-allowed; }
 :root[data-theme="light"] .sl-admin-page [class*="bg-red-500/10"] { background-color: #fee2e2 !important; color: #991b1b !important; }
 :root[data-theme="light"] .sl-admin-page [class*="bg-purple-500/10"] { background-color: #f3e8ff !important; color: #6b21a8 !important; }
 :root[data-theme="light"] .sl-admin-page [class*="bg-blue-500/10"] { background-color: #dbeafe !important; color: #1e40af !important; }
+
+/* Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}

@@ -7,7 +7,8 @@ import { toast } from "sonner";
 import { FaShareAlt } from "react-icons/fa";
 
 import type { DrawPublic, SeriesStats, TicketPublic } from "@/lib/draws";
-import { addToCart } from "@/app/cart/cartStorage";
+import { useAppDispatch } from "@/lib/store/hooks";
+import { addToCart } from "@/lib/store/features/cartSlice";
 import { ReferralModal } from "./ticket-booking/ReferralModal";
 
 import { SeriesSelector } from "./ticket-booking/SeriesSelector";
@@ -36,6 +37,7 @@ const QUICK_AMOUNTS = [1, 5, 10, 50, 100] as const;
 
 export function TicketBookingView({ draw, user, onNeedAuth }: TicketBookingViewProps) {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [activeSeries, setActiveSeries] = useState(draw.series[0] ?? "A");
   const [activeTab, setActiveTab] = useState<Tab>("available");
   const [searchQuery, setSearchQuery] = useState("");
@@ -169,14 +171,14 @@ export function TicketBookingView({ draw, user, onNeedAuth }: TicketBookingViewP
       return;
     }
     if (!selectedCount) return;
-    addToCart({
+    dispatch(addToCart({
       drawId: draw.id,
       drawName: draw.name,
       drawDate: draw.drawDate,
       drawTime: draw.drawTime,
       pricePerTicket: draw.pricePerTicket,
       ticketNumbers: selectedNumbers,
-    });
+    }));
     trackAddToCart(selectedNumbers.length);
     toast.success("Added to cart", {
       description: `${selectedNumbers.length} ticket(s) @ ${draw.name}`,
@@ -192,14 +194,14 @@ export function TicketBookingView({ draw, user, onNeedAuth }: TicketBookingViewP
       return;
     }
     if (!selectedCount) return;
-    addToCart({
+    dispatch(addToCart({
       drawId: draw.id,
       drawName: draw.name,
       drawDate: draw.drawDate,
       drawTime: draw.drawTime,
       pricePerTicket: draw.pricePerTicket,
       ticketNumbers: selectedNumbers,
-    });
+    }));
     trackAddToCart(selectedNumbers.length);
     toast.success("Added to cart", {
       description: `${selectedNumbers.length} ticket(s) — opening checkout`,

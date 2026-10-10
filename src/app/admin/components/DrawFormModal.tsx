@@ -232,10 +232,10 @@ export function DrawFormModal({ open, editDraw, onClose, onSaved }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 8 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full max-w-[640px] rounded-2xl border border-white/[0.07] bg-[#130a10] shadow-[0_40px_100px_rgba(0,0,0,0.8)] flex flex-col max-h-[92vh]"
+            className="w-full max-w-160 rounded-2xl border border-white/[0.07] bg-[#130a10] shadow-[0_40px_100px_rgba(0,0,0,0.8)] flex flex-col max-h-[92vh]"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/[0.06]">
+            <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-white/6">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-400/10 text-amber-400 ring-1 ring-amber-400/20">
                   <IconStar />
@@ -277,7 +277,7 @@ export function DrawFormModal({ open, editDraw, onClose, onSaved }: Props) {
                   {/* Sections extracted into components */}
                   <BasicInfoSection form={mappedForm as any} set={set} />
                   
-                  <div className="border-t border-white/[0.05]" />
+                  <div className="border-t border-white/5" />
 
                   <TimingSection form={mappedForm as any} set={set} durationMode={durationMode} setDurationMode={setDurationMode} />
                   
@@ -286,9 +286,9 @@ export function DrawFormModal({ open, editDraw, onClose, onSaved }: Props) {
                     effectiveStatus === "active" ? "border-emerald-500/30 bg-emerald-500/5" :
                     effectiveStatus === "upcoming" ? "border-blue-500/30 bg-blue-500/5" :
                     effectiveStatus === "drawn" ? "border-amber-500/30 bg-amber-500/5" :
-                    "border-white/[0.05] bg-white/[0.02]"
+                    "border-white/5 bg-white/2"
                   }`}>
-                    <div className="grid grid-cols-3 gap-4 text-[12px]">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-[12px]">
                       <div>
                         <p className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Status</p>
                         <p className={`font-bold ${
@@ -341,25 +341,25 @@ export function DrawFormModal({ open, editDraw, onClose, onSaved }: Props) {
                     </AnimatePresence>
                   </div>
 
-                  <div className="border-t border-white/[0.05]" />
+                  <div className="border-t border-white/5" />
 
                   <TicketConfigSection form={mappedForm as any} set={set} />
 
                 </div>
 
                 {/* Footer */}
-                <div className="flex gap-3 border-t border-white/[0.06] px-6 py-4 bg-black/20">
+                <div className="flex gap-3 border-t border-white/6 px-6 py-4 bg-black/20">
                   <button
                     type="button"
                     onClick={onClose}
-                    className="flex-1 rounded-xl border border-white/10 py-2.5 text-[12px] font-semibold text-zinc-400 transition hover:border-white/20 hover:text-zinc-200 hover:bg-white/[0.03]"
+                    className="flex-1 rounded-xl border border-white/10 py-2.5 text-[12px] font-semibold text-zinc-400 transition hover:border-white/20 hover:text-zinc-200 hover:bg-white/3"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex-[2] rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 py-2.5 text-[12px] font-bold text-white shadow-lg shadow-amber-900/25 transition hover:from-amber-400 hover:to-orange-400 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-2 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 py-2.5 text-[12px] font-bold text-white shadow-lg shadow-amber-900/25 transition hover:from-amber-400 hover:to-orange-400 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {saving ? "Saving…" : editDraw ? "Update Draw" : "Create Draw"}
                   </button>

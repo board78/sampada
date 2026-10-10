@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useId, useState, useSyncExternalStore } from "react";
 import { CartNavButton } from "./CartNavButton";
@@ -51,6 +52,7 @@ export function HeaderBar({
     () => true,
     () => false,
   );
+  const pathname = usePathname() || "";
   const [drawerOpen, setDrawerOpen] = useState(false);
   const drawerId = useId();
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
@@ -81,16 +83,18 @@ export function HeaderBar({
     };
   }, [drawerOpen]);
 
-  const navLinkClass = (index: number, inDrawer: boolean) =>
-    inDrawer
-      ? `block rounded-2xl px-4 py-3.5 text-[15px] font-semibold transition active:scale-[0.99] ${
-          index === 0
-            ? "bg-white/12 text-white"
-            : "text-zinc-200 hover:bg-white/8 hover:text-white"
-        }`
-      : `rounded-full px-3 py-2 transition ${
-          index === 0 ? "bg-white/10 text-white" : "text-zinc-300 hover:bg-white/5 hover:text-white"
-        }`;
+  const isLinkActive = (href: string) => {
+    return pathname === href || (href !== '/' && pathname.startsWith(href));
+  };
+
+  const navLinkClassMobile = (href: string) => {
+    const isActive = isLinkActive(href);
+    return `block rounded-2xl px-4 py-3.5 text-[15px] font-semibold transition active:scale-[0.99] ${
+      isActive
+        ? "bg-white/12 text-white"
+        : "text-zinc-200 hover:bg-white/8 hover:text-white"
+    }`;
+  };
 
   const drawerPortal = (
     <AnimatePresence>
@@ -99,7 +103,7 @@ export function HeaderBar({
           <motion.div
             key="drawer-backdrop"
             role="presentation"
-            className="fixed inset-0 z-[100] bg-[#0a0408]/65 backdrop-blur-[3px] lg:hidden"
+            className="fixed inset-0 z-100 bg-[#0a0408]/65 backdrop-blur-[3px] lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -112,7 +116,7 @@ export function HeaderBar({
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="fixed inset-y-0 right-0 z-[101] flex w-full max-w-[20.5rem] flex-col border-l border-amber-500/20 bg-[#12070e] shadow-[-12px_0_48px_rgba(0,0,0,0.45)] lg:hidden"
+            className="fixed inset-y-0 right-0 z-101 flex w-full max-w-82 flex-col border-l border-amber-500/20 bg-[#12070e] shadow-[-12px_0_48px_rgba(0,0,0,0.45)] lg:hidden"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -143,13 +147,13 @@ export function HeaderBar({
 
             <div className="hide-scrollbar flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pb-8 pt-4">
               <nav className="flex flex-col gap-1" aria-label="Main">
-                {menu.map((item, index) => {
+                {menu.map((item) => {
                   const href = getHref(item);
                   return (
                     <a
                       key={item}
                       href={href}
-                      className={navLinkClass(index, true)}
+                      className={navLinkClassMobile(href)}
                       onClick={closeDrawer}
                     >
                       {item}
@@ -204,7 +208,7 @@ export function HeaderBar({
                       }}
                       className="sl-header-profile-btn flex w-full items-center gap-3 rounded-2xl border border-amber-200/25 bg-amber-500/5 px-4 py-3.5 text-left text-zinc-100 transition hover:border-amber-200/40"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-amber-300 to-orange-500 text-sm font-bold text-[#2d1400]">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-r from-amber-300 to-orange-500 text-sm font-bold text-[#2d1400]">
                         {authUser.name.slice(0, 1).toUpperCase()}
                       </span>
                       <span className="min-w-0 flex-1">
@@ -247,7 +251,7 @@ export function HeaderBar({
 
   return (
     <header className="sticky top-0 z-20 border-b border-amber-500/20 bg-[#17060d]/95 backdrop-blur-xl">
-      <div className="mx-auto w-full max-w-[1800px] px-4 py-2 sm:px-6 sm:py-2.5 lg:px-12 lg:py-3">
+      <div className="mx-auto w-full max-w-450 px-4 py-2 sm:px-6 sm:py-2.5 lg:px-12 lg:py-3">
         {/* Mobile: brand + cart, theme, menu only */}
         <div className="flex items-center justify-between gap-3 lg:hidden">
           <Link
@@ -270,7 +274,7 @@ export function HeaderBar({
             <ThemeToggle />
             <button
               type="button"
-              className="sl-header-menu-btn inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/25 text-zinc-100 transition hover:border-white/30 hover:bg-black/35 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400/60"
+              className="sl-header-menu-btn inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-black/25 text-zinc-100 transition hover:border-white/30 hover:bg-black/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400/60"
               aria-expanded={drawerOpen}
               aria-controls={drawerId}
               aria-label={drawerOpen ? "Close menu" : "Open menu"}
@@ -279,7 +283,7 @@ export function HeaderBar({
               <span className="flex w-5 flex-col gap-1.5" aria-hidden>
                 <span
                   className={`block h-0.5 rounded-full bg-current transition-transform ${
-                    drawerOpen ? "translate-y-[7px] rotate-45" : ""
+                    drawerOpen ? "translate-y-1.75 rotate-45" : ""
                   }`}
                 />
                 <span
@@ -287,7 +291,7 @@ export function HeaderBar({
                 />
                 <span
                   className={`block h-0.5 rounded-full bg-current transition-transform ${
-                    drawerOpen ? "-translate-y-[7px] -rotate-45" : ""
+                    drawerOpen ? "-translate-y-1.75 -rotate-45" : ""
                   }`}
                 />
               </span>
@@ -315,15 +319,21 @@ export function HeaderBar({
             </Link>
 
             <nav className="flex items-center gap-2 text-xs font-semibold text-zinc-200" aria-label="Main">
-              {menu.map((item, index) => {
+              {menu.map((item) => {
                 const href = getHref(item);
+                const isActive = isLinkActive(href);
                 return (
                   <a
                     key={item}
                     href={href}
-                    className={navLinkClass(index, false)}
+                    className="relative group rounded-full px-3 py-2 text-zinc-300 transition hover:text-white"
                   >
-                    {item}
+                    <span className="relative z-10">{item}</span>
+                    <span
+                      className={`absolute left-3 right-3 -bottom-1.5 h-0.5 rounded-full bg-amber-400 origin-left transition-transform duration-300 ${
+                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`}
+                    />
                   </a>
                 );
               })}
@@ -363,7 +373,7 @@ export function HeaderBar({
                 onClick={onProfileClick}
                 className="sl-header-profile-btn flex items-center gap-2 rounded-full border border-amber-200/20 px-3 py-2 text-zinc-100 transition hover:border-amber-200/40"
               >
-                <span className="sl-header-profile-avatar flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-r from-amber-300 to-orange-500 text-xs font-bold text-[#2d1400]">
+                <span className="sl-header-profile-avatar flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-r from-amber-300 to-orange-500 text-xs font-bold text-[#2d1400]">
                   {authUser.name.slice(0, 1).toUpperCase()}
                 </span>
                 <span className="hidden max-w-28 truncate text-xs font-semibold sm:inline">

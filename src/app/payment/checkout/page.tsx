@@ -65,7 +65,7 @@ function CheckoutContent() {
               <a
                 key={app.label}
                 href={app.href}
-                className={`block rounded-2xl bg-gradient-to-r ${app.color} px-4 py-3 text-center text-sm font-bold text-white shadow-lg transition hover:opacity-90`}
+                className={`block rounded-2xl bg-linear-to-r ${app.color} px-4 py-3 text-center text-sm font-bold text-white shadow-lg transition hover:opacity-90`}
               >
                 {app.label}
               </a>

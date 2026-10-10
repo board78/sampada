@@ -57,7 +57,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/testimonials`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
+
+  // ─── Dynamic Geo Pages ───────────────────────────────────────────
+  const cities = [
+    "delhi", "mumbai", "kolkata", "chennai", "bangalore", 
+    "hyderabad", "pune", "ahmedabad", "jaipur", "lucknow", "chandigarh"
+  ];
+  
+  const geoPages: MetadataRoute.Sitemap = cities.map((city) => ({
+    url: `${baseUrl}/lottery-in-${city}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
   // ─── Dynamic Blog Pages ──────────────────────────────────────────
   const slugs = await getBlogSlugs();
@@ -68,5 +87,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...geoPages, ...blogPages];
 }

@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import type { SafeUser } from "@/lib/auth";
+import { useAuth } from "@/components/AuthProvider";
 import type { LiveResult } from "@/lib/types";
 
 type ImageResult = {
@@ -17,7 +17,7 @@ type ImageResult = {
 
 export default function LiveResultsPage() {
   const router = useRouter();
-  const [user, setUser] = useState<SafeUser | null>(null);
+  const { user } = useAuth();
   
   const [activeTab, setActiveTab] = useState<"declarations" | "charts">("declarations");
 
@@ -33,17 +33,6 @@ export default function LiveResultsPage() {
   const [timeFilter, setTimeFilter] = useState("");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  // Fetch profile
-  useEffect(() => {
-    fetch("/api/profile")
-      .then(async (r) => (r.ok ? (await r.json() as { user: SafeUser }) : null))
-      .then((d) => {
-        if (d?.user) {
-          setUser(d.user);
-        }
-      })
-      .catch(() => {});
-  }, []);
 
   // Fetch live results
   useEffect(() => {
@@ -97,18 +86,12 @@ export default function LiveResultsPage() {
    <div className="royal-surface royal-grid relative min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Ambient background glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-[-8rem] top-[-6rem] h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
-        <div className="absolute right-[-10rem] top-[8rem] h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
-        <div className="absolute bottom-[-12rem] left-[20%] h-[26rem] w-[26rem] rounded-full bg-amber-300/12 blur-3xl" />
+        <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
+        <div className="absolute -right-40 top-32 h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
+        <div className="absolute -bottom-48 left-[20%] h-104 w-104 rounded-full bg-amber-300/12 blur-3xl" />
       </div>
 
-      <Navbar
-        user={user}
-        onAuthChange={(newUser) => {
-          setUser(newUser);
-          if (!newUser) router.push("/");
-        }}
-      />
+      <Navbar />
 
       <main className="relative mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -139,7 +122,7 @@ export default function LiveResultsPage() {
                 placeholder="Search draw name or ticket..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-amber-400/50 focus:bg-white/[0.08]"
+                className="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-amber-400/50 focus:bg-white/8"
               />
             </div>
           )}
@@ -150,13 +133,13 @@ export default function LiveResultsPage() {
                 type="date"
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/[0.08] [color-scheme:dark]"
+                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/8 scheme-dark"
               />
               <input
                 type="time"
                 value={timeFilter}
                 onChange={(e) => setTimeFilter(e.target.value)}
-                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/[0.08] [color-scheme:dark]"
+                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/8 scheme-dark"
               />
               {(dateFilter || timeFilter) && (
                 <button
@@ -224,11 +207,11 @@ export default function LiveResultsPage() {
             {filteredResults.map((result) => (
               <div
                 key={result.id}
-                className="royal-panel flex flex-col justify-between gap-4 rounded-[24px] border border-white/10 bg-[#14070f]/80 p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:p-6"
+                className="royal-panel flex flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-[#14070f]/80 p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:p-6"
               >
                 <div className="flex items-start gap-4">
                   {/* Icon badge */}
-                  <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 text-amber-300 sm:flex">
+                  <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-amber-500/20 to-orange-500/20 text-amber-300 sm:flex">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
                       <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
@@ -300,8 +283,8 @@ export default function LiveResultsPage() {
           ) : (
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {imageResults.map((result) => (
-                <div key={result.id} className="royal-panel overflow-hidden rounded-[24px] border border-white/10 bg-[#14070f]/80 backdrop-blur-xl flex flex-col">
-                  <div className="p-4 border-b border-white/10 flex justify-between items-center bg-white/[0.02]">
+                <div key={result.id} className="royal-panel overflow-hidden rounded-3xl border border-white/10 bg-[#14070f]/80 backdrop-blur-xl flex flex-col">
+                  <div className="p-4 border-b border-white/10 flex justify-between items-center bg-white/2">
                     <div className="flex items-center gap-2 text-zinc-300">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -320,7 +303,7 @@ export default function LiveResultsPage() {
                     </div>
                   </div>
                   <div 
-                    className="relative aspect-[3/4] w-full bg-black/40 p-2 cursor-pointer group"
+                    className="relative aspect-3/4 w-full bg-black/40 p-2 cursor-pointer group"
                     onClick={() => setSelectedImage(result.imageUrl)}
                   >
                     <img
@@ -328,7 +311,7 @@ export default function LiveResultsPage() {
                       alt={`Result chart for ${result.resultDate} ${result.resultTime}`}
                       className="w-full h-full object-contain rounded-xl transition duration-300 group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100 rounded-b-[24px]">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100 rounded-b-3xl">
                       <span className="rounded-full bg-amber-500/90 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md shadow-lg flex items-center gap-2">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="15 3 21 3 21 9" />
@@ -356,7 +339,7 @@ export default function LiveResultsPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-md cursor-zoom-out"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/90 p-4 sm:p-8 backdrop-blur-md cursor-zoom-out"
           >
             <motion.img
               initial={{ scale: 0.95, opacity: 0 }}

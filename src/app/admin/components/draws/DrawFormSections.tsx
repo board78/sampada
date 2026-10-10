@@ -10,7 +10,7 @@ export function BasicInfoSection({ form, set }: SectionProps) {
   return (
     <div>
       <SectionHeader icon={<IconStar />} label="Basic Details" accent="bg-amber-400/10 text-amber-400 border border-amber-400/20" />
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className={lbl}>
             Draw Name <span className="text-amber-500">*</span>
@@ -68,7 +68,7 @@ export function TimingSection({ form, set, durationMode, setDurationMode }: Timi
           </span>
           <p className="text-[11.5px] font-bold text-zinc-300">Activation Time</p>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div>
             <label className={lbl}>
               Date <span className="text-amber-500">*</span>
@@ -103,7 +103,7 @@ export function TimingSection({ form, set, durationMode, setDurationMode }: Timi
       </div>
 
       <div className="relative py-2">
-        <div className="absolute inset-y-0 left-[9px] w-px bg-gradient-to-b from-emerald-500/20 via-zinc-700 to-red-500/20" />
+        <div className="absolute inset-y-0 left-2.25 w-px bg-linear-to-b from-emerald-500/20 via-zinc-700 to-red-500/20" />
       </div>
 
       {/* End (Draw time) */}
@@ -122,7 +122,7 @@ export function TimingSection({ form, set, durationMode, setDurationMode }: Timi
             className={`flex-1 rounded-lg border px-3 py-1.5 text-[11px] font-semibold transition ${
               durationMode === "7days"
                 ? "border-amber-500/50 bg-amber-500/10 text-amber-300"
-                : "border-white/5 bg-white/[0.02] text-zinc-500 hover:text-zinc-300"
+                : "border-white/5 bg-white/2 text-zinc-500 hover:text-zinc-300"
             }`}
           >
             Auto: 7 Days Later
@@ -133,14 +133,14 @@ export function TimingSection({ form, set, durationMode, setDurationMode }: Timi
             className={`flex-1 rounded-lg border px-3 py-1.5 text-[11px] font-semibold transition ${
               durationMode === "custom"
                 ? "border-amber-500/50 bg-amber-500/10 text-amber-300"
-                : "border-white/5 bg-white/[0.02] text-zinc-500 hover:text-zinc-300"
+                : "border-white/5 bg-white/2 text-zinc-500 hover:text-zinc-300"
             }`}
           >
             Custom Date
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={lbl}>
               Date <span className="text-amber-500">*</span>
@@ -185,7 +185,7 @@ export function TicketConfigSection({ form, set }: SectionProps) {
       <SectionHeader icon={<IconTicket />} label="Ticket Configuration" accent="bg-blue-400/10 text-blue-400 border border-blue-400/20" />
 
       {/* Price · Series · Prefix */}
-      <div className="grid grid-cols-3 gap-4 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
         <div>
           <label className={lbl}>
             Price / Ticket (₹) <span className="text-amber-500">*</span>
@@ -271,7 +271,7 @@ export function StatusOverrideSection({ form, set }: SectionProps) {
     <div className={`rounded-xl border px-5 py-4 ${
       form.statusOverride !== "auto" 
         ? "border-amber-500/30 bg-amber-500/5 shadow-[0_0_15px_rgba(245,158,11,0.05)_inset]" 
-        : "border-white/[0.05] bg-white/[0.01]"
+        : "border-white/5 bg-white/1"
     }`}>
       <div className="mb-3 flex items-center justify-between">
         <div>
@@ -284,7 +284,7 @@ export function StatusOverrideSection({ form, set }: SectionProps) {
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-2 mt-1">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mt-1">
         {([
           { value: "auto",     label: "Auto",     sub: "Schedule" },
           { value: "upcoming", label: "Upcoming", sub: "Hidden" },
@@ -308,7 +308,7 @@ export function StatusOverrideSection({ form, set }: SectionProps) {
               className={`flex flex-col items-center rounded-xl border py-2.5 px-1.5 text-center transition-all duration-150 ${
                 isSelected
                   ? `${colors[opt.value]} ring-1 ring-inset ring-current/40 shadow-sm`
-                  : "border-white/[0.07] text-zinc-600 bg-white/[0.02] hover:border-white/15 hover:text-zinc-400"
+                  : "border-white/[0.07] text-zinc-600 bg-white/2 hover:border-white/15 hover:text-zinc-400"
               }`}
             >
               <span className="text-[11px] font-bold leading-tight">{opt.label}</span>

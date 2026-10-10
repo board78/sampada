@@ -112,7 +112,7 @@ function TicketSkeleton() {
   return (
     <div className="grid grid-cols-4 gap-1.5 pt-1 sm:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8">
       {[...Array(40)].map((_, i) => (
-        <div key={i} className="h-9 animate-pulse rounded-lg bg-white/[0.06]" />
+        <div key={i} className="h-9 animate-pulse rounded-lg bg-white/6" />
       ))}
     </div>
   );
@@ -311,7 +311,7 @@ export function AdminTicketView({ draw, onBack }: Props) {
 
         <div className="flex shrink-0 flex-wrap items-center gap-2">
           {summary && (
-            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px]">
+            <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/3 px-3 py-1.5 text-[11px]">
               <span className="text-zinc-500">Total: <span className="font-bold text-zinc-200">{summary.total.toLocaleString("en-IN")}</span></span>
               <span className="text-zinc-700">|</span>
               <span className="text-zinc-500">Available: <span className="font-bold text-emerald-300">{summary.available.toLocaleString("en-IN")}</span></span>
@@ -381,14 +381,14 @@ export function AdminTicketView({ draw, onBack }: Props) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search ticket number…"
-            className="ml-auto w-48 rounded-lg border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-white outline-none placeholder:text-zinc-600 focus:border-amber-300/50"
+            className="w-full sm:ml-auto sm:w-48 rounded-lg border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-white outline-none placeholder:text-zinc-600 focus:border-amber-300/50"
           />
         </div>
       </div>
 
       {/* ── Legend ── */}
       <div className="shrink-0 flex flex-wrap gap-3 px-4 py-2 sm:px-5 text-[10px] text-zinc-500">
-        <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm border border-white/12 bg-white/[0.04]" />Available</span>
+        <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm border border-white/12 bg-white/4" />Available</span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm bg-amber-300/20 border border-amber-300" />Selected</span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm bg-zinc-800" />Sold</span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-sm border border-cyan-400/30 bg-cyan-400/10" />LP Special</span>
