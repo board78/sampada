@@ -3,7 +3,8 @@ import { Navbar } from "@/components/Navbar";
 
 export async function generateMetadata({ params }: { params: Promise<{ city: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const cityName = resolvedParams.city.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+  const rawCity = resolvedParams?.city || "your-city";
+  const cityName = rawCity.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
   return {
     title: `Buy Subhlaxmi Lottery Tickets in ${cityName} - Official`,
     description: `Play Subhlaxmi Lottery from ${cityName}. Get secure online tickets, instant results, and fast UPI withdrawals for users in ${cityName}, India.`,
@@ -20,7 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
 
 export default async function GeoLotteryPage({ params }: { params: Promise<{ city: string }> }) {
   const resolvedParams = await params;
-  const cityName = resolvedParams.city.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+  const rawCity = resolvedParams?.city || "your-city";
+  const cityName = rawCity.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase());
 
   return (
     <div className="royal-surface royal-grid min-h-screen bg-background text-foreground">

@@ -9,7 +9,7 @@ const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 60; // 60 requests per minute for normal APIs
 const MAX_AUTH_REQUESTS = 10; // 10 requests per minute for auth/login APIs
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for') ?? request.headers.get('x-real-ip') ?? 'unknown';
   const path = request.nextUrl.pathname;
 
