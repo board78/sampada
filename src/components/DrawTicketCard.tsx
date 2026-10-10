@@ -42,7 +42,8 @@ type Props = {
 
 export function DrawTicketCard({ draw, index, language, buyLabel, onBuy }: Props) {
   const prize = formatPrize(draw.prizeAmount, language);
-  const drawDate = new Date(draw.drawDate);
+  // Use today's date as requested
+  const drawDate = new Date();
   const drawTimeLabel = `${drawDate.toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
