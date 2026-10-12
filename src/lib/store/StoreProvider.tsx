@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore } from "./store";
+import { makeStore } from "./store";
 import { setUser } from "./features/authSlice";
 import type { SafeUser } from "@/lib/auth";
 
@@ -13,13 +13,12 @@ export default function StoreProvider({
   children: React.ReactNode;
   initialUser: SafeUser | null;
 }) {
-  const storeRef = useRef<AppStore | null>(null);
-  
-  if (!storeRef.current) {
-    storeRef.current = makeStore();
+  const [store] = useState(() => {
+    const s = makeStore();
     // Initialize the store with the SSR fetched user to prevent flickering
-    storeRef.current.dispatch(setUser(initialUser));
-  }
+    s.dispatch(setUser(initialUser));
+    return s;
+  });
 
-  return <Provider store={storeRef.current}>{children}</Provider>;
+  return <Provider store={store}>{children}</Provider>;
 }

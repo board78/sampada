@@ -58,7 +58,7 @@ export function useProfilePanel(
     return () => {
       cancelled = true;
     };
-  }, [open, user?.id, profile?.user?.id]);
+  }, [open, user, profile?.user?.id]);
 
   const updateSettings = async (settings: Partial<UserSettings>) => {
     if (!profile) return;

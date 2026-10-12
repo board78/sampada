@@ -19,19 +19,19 @@ export function TicketButton({
     "relative w-full min-h-[2.5rem] rounded-lg border px-1 py-2 text-center font-mono text-[10px] font-semibold tabular-nums leading-tight transition select-none sm:min-h-[2.75rem] sm:text-[11px]";
 
   if (isSold) {
-    base += " border-zinc-700/30 bg-zinc-900/40 text-zinc-700 cursor-not-allowed line-through";
+    base += " border-slate-200 bg-slate-100 text-slate-400 cursor-not-allowed line-through";
   } else if (isSelected) {
     base +=
-      " sl-ticket-selected border-amber-500 bg-gradient-to-b from-[#3a2518] to-[#140c09] text-amber-100 shadow-[0_0_0_1px_rgba(251,146,60,0.45),0_6px_20px_rgba(0,0,0,0.35)]";
+      " sl-ticket-selected border-blue-600 bg-linear-to-b from-blue-600 to-blue-800 text-white shadow-md";
   } else if (ticket.category === "lp_special") {
     base +=
-      " sl-ticket-lp border-cyan-400/30 bg-cyan-900/20 text-cyan-200 hover:border-cyan-300/60 hover:bg-cyan-300/10 cursor-pointer";
+      " sl-ticket-lp border-blue-400/40 bg-blue-50 text-blue-700 hover:border-blue-500 hover:bg-blue-100 cursor-pointer";
   } else if (ticket.category === "special") {
     base +=
-      " border-purple-400/30 bg-purple-900/20 text-purple-200 hover:border-purple-300/60 hover:bg-purple-300/10 cursor-pointer";
+      " border-purple-400/40 bg-purple-50 text-purple-700 hover:border-purple-500 hover:bg-purple-100 cursor-pointer";
   } else {
     base +=
-      " border-amber-200/20 bg-[#1a0e14] text-zinc-200 hover:border-amber-300/50 hover:bg-amber-300/5 hover:text-amber-100 cursor-pointer";
+      " border-slate-200 bg-white text-slate-800 hover:border-blue-400 hover:bg-blue-50/50 hover:text-blue-900 cursor-pointer shadow-2xs";
   }
 
   return (

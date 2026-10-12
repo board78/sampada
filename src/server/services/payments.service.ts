@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { getDb } from "@/lib/mongodb";
 import type { PendingPaymentDoc } from "@/types/payments.types";
 

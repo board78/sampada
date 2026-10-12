@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
-import { useAuth } from "@/components/AuthProvider";
 import type { LiveResult } from "@/lib/types";
 
 type ImageResult = {
@@ -16,9 +14,6 @@ type ImageResult = {
 };
 
 export default function LiveResultsPage() {
-  const router = useRouter();
-  const { user } = useAuth();
-  
   const [activeTab, setActiveTab] = useState<"declarations" | "charts">("declarations");
 
   // Declarations State
@@ -36,23 +31,32 @@ export default function LiveResultsPage() {
 
   // Fetch live results
   useEffect(() => {
-    setLoading(true);
+    let cancelled = false;
     fetch("/api/results")
       .then(async (r) => (r.ok ? (await r.json() as { results: LiveResult[] }) : null))
       .then((d) => {
-        if (d?.results) {
-          setResults(d.results);
+        if (!cancelled) {
+          if (d?.results) {
+            setResults(d.results);
+          }
+          setLoading(false);
         }
-        setLoading(false);
       })
       .catch(() => {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Fetch image results
   useEffect(() => {
-    setLoadingImages(true);
+    let cancelled = false;
+    Promise.resolve().then(() => {
+      if (!cancelled) setLoadingImages(true);
+    });
+
     const query = new URLSearchParams();
     if (dateFilter) query.append("date", dateFilter);
     if (timeFilter) query.append("time", timeFilter);
@@ -60,14 +64,20 @@ export default function LiveResultsPage() {
     fetch(`/api/image-results?${query.toString()}`)
       .then(async (r) => (r.ok ? (await r.json() as { results: ImageResult[] }) : null))
       .then((d) => {
-        if (d?.results) {
-          setImageResults(d.results);
+        if (!cancelled) {
+          if (d?.results) {
+            setImageResults(d.results);
+          }
+          setLoadingImages(false);
         }
-        setLoadingImages(false);
       })
       .catch(() => {
-        setLoadingImages(false);
+        if (!cancelled) setLoadingImages(false);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, [dateFilter, timeFilter]);
 
   // Filtered results based on search query
@@ -122,7 +132,7 @@ export default function LiveResultsPage() {
                 placeholder="Search draw name or ticket..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-full border border-white/10 bg-white/5 py-2 pl-9 pr-4 text-sm text-white placeholder-zinc-500 outline-none transition focus:border-amber-400/50 focus:bg-white/8"
+                className="sl-input rounded-full pl-9! shadow-2xs"
               />
             </div>
           )}
@@ -133,18 +143,18 @@ export default function LiveResultsPage() {
                 type="date"
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/8 scheme-dark"
+                className="sl-input w-full sm:w-auto rounded-full shadow-2xs"
               />
               <input
                 type="time"
                 value={timeFilter}
                 onChange={(e) => setTimeFilter(e.target.value)}
-                className="w-full sm:w-auto rounded-full border border-white/10 bg-white/5 py-2 px-4 text-sm text-white outline-none transition focus:border-amber-400/50 focus:bg-white/8 scheme-dark"
+                className="sl-input w-full sm:w-auto rounded-full shadow-2xs"
               />
               {(dateFilter || timeFilter) && (
                 <button
                   onClick={() => { setDateFilter(""); setTimeFilter(""); }}
-                  className="text-xs text-zinc-400 hover:text-white transition whitespace-nowrap"
+                  className="text-xs font-semibold text-slate-500 hover:text-blue-700 transition whitespace-nowrap"
                 >
                   Clear Filters
                 </button>
@@ -154,13 +164,13 @@ export default function LiveResultsPage() {
         </div>
 
         {/* Tabs */}
-        <div className="mt-8 flex gap-4 border-b border-white/10 pb-px overflow-x-auto custom-scrollbar">
+        <div className="mt-8 flex gap-4 border-b border-slate-200 pb-px overflow-x-auto custom-scrollbar">
           <button
             onClick={() => setActiveTab("declarations")}
             className={`whitespace-nowrap border-b-2 py-3 px-1 text-sm font-semibold transition ${
               activeTab === "declarations"
-                ? "border-amber-400 text-amber-400"
-                : "border-transparent text-zinc-400 hover:text-zinc-200"
+                ? "border-blue-600 text-blue-700"
+                : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
             Live Declarations
@@ -169,8 +179,8 @@ export default function LiveResultsPage() {
             onClick={() => setActiveTab("charts")}
             className={`whitespace-nowrap border-b-2 py-3 px-1 text-sm font-semibold transition ${
               activeTab === "charts"
-                ? "border-amber-400 text-amber-400"
-                : "border-transparent text-zinc-400 hover:text-zinc-200"
+                ? "border-blue-600 text-blue-700"
+                : "border-transparent text-slate-500 hover:text-slate-800"
             }`}
           >
             Result Charts
@@ -182,22 +192,22 @@ export default function LiveResultsPage() {
           <>
             {loading ? (
             /* Loading state */
-          <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[#14070f]/90 p-8 py-16 text-center backdrop-blur-xl">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-400/30 border-t-amber-400" />
-            <p className="mt-3 text-sm text-zinc-400">Fetching latest draw results...</p>
+          <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-3xl border border-blue-200/50 bg-white p-8 py-16 text-center shadow-sm">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-300 border-t-blue-600" />
+            <p className="mt-3 text-sm text-slate-600">Fetching latest draw results...</p>
           </div>
         ) : filteredResults.length === 0 ? (
           /* Empty state */
-          <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[#14070f]/90 p-8 py-16 text-center backdrop-blur-xl">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-zinc-500/20 bg-zinc-500/5 text-zinc-400">
+          <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-3xl border border-blue-200/50 bg-white p-8 py-16 text-center shadow-sm">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-600">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" y1="8" x2="12" y2="12" />
                 <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
             </div>
-            <h2 className="text-xl font-semibold">No results found</h2>
-            <p className="mt-2 max-w-sm text-sm text-zinc-400">
+            <h2 className="text-xl font-bold text-slate-900">No results found</h2>
+            <p className="mt-2 max-w-sm text-sm text-slate-600">
               {searchQuery ? "We couldn't find any results matching your search query. Try typing something else." : "No draw results have been declared yet. Please check back later."}
             </p>
           </div>
@@ -207,11 +217,11 @@ export default function LiveResultsPage() {
             {filteredResults.map((result) => (
               <div
                 key={result.id}
-                className="royal-panel flex flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-[#14070f]/80 p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:p-6"
+                className="royal-panel flex flex-col justify-between gap-4 rounded-3xl border border-blue-200/40 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:p-6"
               >
                 <div className="flex items-start gap-4">
                   {/* Icon badge */}
-                  <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-amber-500/20 to-orange-500/20 text-amber-300 sm:flex">
+                  <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-blue-500/15 to-indigo-500/15 text-blue-700 sm:flex border border-blue-200/50">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
                       <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
@@ -221,37 +231,38 @@ export default function LiveResultsPage() {
                     </svg>
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-white">{result.drawName}</h2>
+                    <h2 className="text-lg font-bold text-slate-900">{result.drawName}</h2>
                     {result.winnerName ? (
                       <div className="mt-1 flex items-center gap-2">
                         {result.winnerImage && (
+                          // eslint-disable-next-line @next/next/no-img-element
                           <img
                             src={result.winnerImage}
                             alt={result.winnerName}
-                            className="h-5 w-5 rounded-full object-cover border border-white/20"
+                            className="h-5 w-5 rounded-full object-cover border border-blue-200"
                           />
                         )}
-                        <span className="text-xs text-zinc-400">
-                          Winner: <strong className="text-zinc-200">{result.winnerName}</strong>
+                        <span className="text-xs text-slate-600">
+                          Winner: <strong className="text-slate-900">{result.winnerName}</strong>
                         </span>
                       </div>
                     ) : (
-                      <p className="mt-1 text-xs text-zinc-500">Verified Draw Result</p>
+                      <p className="mt-1 text-xs text-slate-500">Verified Draw Result</p>
                     )}
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-4 sm:border-0 sm:pt-0">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-t border-slate-100 pt-4 sm:border-0 sm:pt-0">
                   <div className="text-left sm:text-right">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Winning Ticket</p>
-                    <div className="mt-1 inline-block rounded-lg bg-amber-500/10 px-3 py-1 font-mono text-sm font-semibold tracking-wider text-amber-300 border border-amber-500/20">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Winning Ticket</p>
+                    <div className="mt-1 inline-block rounded-lg bg-blue-50 px-3 py-1 font-mono text-sm font-bold tracking-wider text-blue-700 border border-blue-200">
                       {result.winningTicket}
                     </div>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Prize Amount</p>
-                    <p className="mt-1 text-base font-bold text-emerald-400">{result.prize}</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Prize Amount</p>
+                    <p className="mt-1 text-base font-bold text-emerald-700">{result.prize}</p>
                   </div>
                 </div>
               </div>
@@ -262,39 +273,39 @@ export default function LiveResultsPage() {
         ) : (
           <>
             {loadingImages ? (
-            <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[#14070f]/90 p-8 py-16 text-center backdrop-blur-xl">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-amber-400/30 border-t-amber-400" />
-              <p className="mt-3 text-sm text-zinc-400">Fetching result charts...</p>
+            <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-3xl border border-blue-200/50 bg-white p-8 py-16 text-center shadow-sm">
+              <div className="h-8 w-8 animate-spin rounded-full border-2 border-blue-300 border-t-blue-600" />
+              <p className="mt-3 text-sm text-slate-600">Fetching result charts...</p>
             </div>
           ) : imageResults.length === 0 ? (
-            <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-[28px] border border-white/10 bg-[#14070f]/90 p-8 py-16 text-center backdrop-blur-xl">
-              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-zinc-500/20 bg-zinc-500/5 text-zinc-400">
+            <div className="royal-panel mt-8 flex flex-col items-center justify-center rounded-3xl border border-blue-200/50 bg-white p-8 py-16 text-center shadow-sm">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-blue-200 bg-blue-50 text-blue-600">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                   <circle cx="8.5" cy="8.5" r="1.5" />
                   <polyline points="21 15 16 10 5 21" />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold">No result charts found</h2>
-              <p className="mt-2 max-w-sm text-sm text-zinc-400">
+              <h2 className="text-xl font-bold text-slate-900">No result charts found</h2>
+              <p className="mt-2 max-w-sm text-sm text-slate-600">
                 {(dateFilter || timeFilter) ? "We couldn't find any charts matching your selected date and time. Try adjusting the filters." : "No result charts have been uploaded yet."}
               </p>
             </div>
           ) : (
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {imageResults.map((result) => (
-                <div key={result.id} className="royal-panel overflow-hidden rounded-3xl border border-white/10 bg-[#14070f]/80 backdrop-blur-xl flex flex-col">
-                  <div className="p-4 border-b border-white/10 flex justify-between items-center bg-white/2">
-                    <div className="flex items-center gap-2 text-zinc-300">
+                <div key={result.id} className="royal-panel overflow-hidden rounded-3xl border border-blue-200/50 bg-white shadow-sm flex flex-col">
+                  <div className="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+                    <div className="flex items-center gap-2 text-slate-700">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                         <line x1="16" y1="2" x2="16" y2="6" />
                         <line x1="8" y1="2" x2="8" y2="6" />
                         <line x1="3" y1="10" x2="21" y2="10" />
                       </svg>
-                      <span className="text-sm font-medium">{result.resultDate}</span>
+                      <span className="text-sm font-semibold">{result.resultDate}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-amber-400 bg-amber-400/10 px-2 py-1 rounded-lg border border-amber-400/20">
+                    <div className="flex items-center gap-2 text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <circle cx="12" cy="12" r="10" />
                         <polyline points="12 6 12 12 16 14" />
@@ -303,16 +314,17 @@ export default function LiveResultsPage() {
                     </div>
                   </div>
                   <div 
-                    className="relative aspect-3/4 w-full bg-black/40 p-2 cursor-pointer group"
+                    className="relative aspect-3/4 w-full bg-slate-100 p-2 cursor-pointer group"
                     onClick={() => setSelectedImage(result.imageUrl)}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={result.imageUrl}
                       alt={`Result chart for ${result.resultDate} ${result.resultTime}`}
                       className="w-full h-full object-contain rounded-xl transition duration-300 group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition group-hover:opacity-100 rounded-b-3xl">
-                      <span className="rounded-full bg-amber-500/90 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md shadow-lg flex items-center gap-2">
+                    <div className="absolute inset-0 flex items-center justify-center bg-blue-900/30 opacity-0 transition group-hover:opacity-100 rounded-b-3xl">
+                      <span className="rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white shadow-lg flex items-center gap-2">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="15 3 21 3 21 9" />
                           <polyline points="9 21 3 21 3 15" />

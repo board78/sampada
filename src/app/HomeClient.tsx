@@ -107,7 +107,7 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
       <h1 className="sr-only">Subhlaxmi Lottery — India&apos;s Trusted Online Lottery | Buy Tickets &amp; Live Results</h1>
 
       <main className="relative h-screen overflow-hidden">
-        <div className="flex h-full flex-col bg-[#17060d]/90 backdrop-blur-xl">
+        <div className="flex h-full flex-col bg-background/95 backdrop-blur-xl">
           <HeaderBar {...headerBarProps} />
 
           <div className="mx-auto w-full max-w-450 min-h-0 flex-1 px-4 pb-4 md:px-5 md:pb-5 lg:px-6 lg:pb-6">

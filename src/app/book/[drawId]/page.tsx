@@ -119,40 +119,40 @@ export default function BookDrawPage() {
   };
 
   return (
-    <div className="royal-surface royal-grid royal-frame relative h-[100dvh] max-h-[100dvh] overflow-hidden bg-background text-foreground">
+    <div className="royal-surface royal-grid royal-frame relative h-dvh max-h-dvh overflow-hidden bg-background text-foreground">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-8rem] top-[-6rem] h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
-        <div className="absolute right-[-10rem] top-[8rem] h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
-        <div className="absolute bottom-[-12rem] left-[20%] h-[26rem] w-[26rem] rounded-full bg-amber-300/12 blur-3xl" />
+        <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
+        <div className="absolute -right-40 top-32 h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
+        <div className="absolute -bottom-48 left-[20%] h-104 w-104 rounded-full bg-amber-300/12 blur-3xl" />
       </div>
       {/* <FrameOverlay /> */}
 
-      <main className="relative flex h-[100dvh] max-h-[100dvh] flex-col overflow-hidden">
-        <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-[#17060d]/90 backdrop-blur-xl">
+      <main className="relative flex h-dvh max-h-dvh flex-col overflow-hidden">
+        <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-background/95 backdrop-blur-xl">
           <div className="shrink-0">
             <HeaderBar {...headerBarProps} />
           </div>
 
           <div className="mx-auto flex min-h-0 w-full max-w-[1800px] flex-1 flex-col overflow-hidden px-4 pb-3 pt-0 md:px-5 md:pb-4 lg:px-6 lg:pb-4">
             {loadError === "notfound" ? (
-              <div className="royal-panel mt-4 rounded-[24px] border border-white/10 bg-[#14070f] p-8 text-center">
-                <p className="text-lg font-semibold text-white">Draw not found</p>
-                <p className="mt-2 text-sm text-zinc-400">This draw may be closed or the link is invalid.</p>
+              <div className="royal-panel mt-4 rounded-3xl border border-blue-200/50 bg-white p-8 text-center shadow-sm">
+                <p className="text-lg font-bold text-slate-900">Draw not found</p>
+                <p className="mt-2 text-sm text-slate-600">This draw may be closed or the link is invalid.</p>
                 <button
                   type="button"
                   onClick={() => router.push("/")}
-                  className="sl-cta-gradient mt-6 rounded-full px-6 py-2.5 text-sm font-semibold text-white"
+                  className="sl-cta-gradient mt-6 rounded-full px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-500/20"
                 >
                   Back to home
                 </button>
               </div>
             ) : loadError === "failed" ? (
-              <div className="royal-panel mt-4 rounded-[24px] border border-white/10 bg-[#14070f] p-8 text-center">
-                <p className="text-lg font-semibold text-white">Could not load draw</p>
+              <div className="royal-panel mt-4 rounded-3xl border border-blue-200/50 bg-white p-8 text-center shadow-sm">
+                <p className="text-lg font-bold text-slate-900">Could not load draw</p>
                 <button
                   type="button"
                   onClick={() => router.refresh()}
-                  className="mt-6 rounded-full border border-white/20 px-6 py-2.5 text-sm font-semibold text-zinc-200"
+                  className="mt-6 rounded-full border border-blue-200 bg-blue-50 px-6 py-2.5 text-sm font-semibold text-blue-800 transition hover:bg-blue-100"
                 >
                   Try again
                 </button>

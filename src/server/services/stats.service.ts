@@ -1,6 +1,4 @@
 import { getDb } from "@/lib/mongodb";
-import { AuthTicketDoc } from "@/types/auth.types";
-import { UserDoc } from "@/types/auth.types";
 
 export type RecentBookingPublic = {
   id: string;

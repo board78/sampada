@@ -11,19 +11,19 @@ export function WinnersSection({ liveResults }: WinnersSectionProps) {
   const [winnerBurst, setWinnerBurst] = useState({ image: "", key: 0 });
 
   return (
-    <section className="royal-panel sl-winners-section mt-4 overflow-hidden rounded-[28px] border border-white/10 bg-[#14070f] p-5 sm:mt-5">
+    <section className="royal-panel sl-winners-section mt-4 overflow-hidden rounded-[28px] border border-blue-200/40 bg-white p-5 sm:mt-5 shadow-sm">
       <div className="pointer-events-none absolute inset-0 opacity-60">
-        <div className="absolute left-[-6rem] top-[-6rem] h-72 w-72 rounded-full bg-amber-300/10 blur-3xl" />
-        <div className="absolute right-[-7rem] bottom-[-7rem] h-80 w-80 rounded-full bg-orange-500/10 blur-3xl" />
+        <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-blue-300/10 blur-3xl" />
+        <div className="absolute -right-28 -bottom-28 h-80 w-80 rounded-full bg-blue-500/10 blur-3xl" />
       </div>
 
       <div className="relative mb-4 flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p className="sl-winners-kicker text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200/70">Trusted results</p>
-          <h2 className="mt-2 text-xl font-semibold">Celebrating Our Winners</h2>
-          <p className="mt-1 text-xs text-zinc-500">Recent wins from verified ticket buyers.</p>
+          <p className="sl-winners-kicker text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-700">Trusted results</p>
+          <h2 className="mt-2 text-xl font-bold text-slate-900">Celebrating Our Winners</h2>
+          <p className="mt-1 text-xs text-slate-600">Recent wins from verified ticket buyers.</p>
         </div>
-        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-zinc-300">
+        <span className="rounded-full border border-blue-200/50 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-800">
           {liveResults.filter((r) => r.winnerName).length} winners
         </span>
       </div>

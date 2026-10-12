@@ -119,7 +119,7 @@ export async function sendBookingConfirmationEmail({
     connectionTimeout: 5000,
     greetingTimeout: 5000,
     socketTimeout: 10000,
-  } as any);
+  } as unknown as nodemailer.TransportOptions);
 
   // Build items list HTML
   let itemsHtml = "";
@@ -359,7 +359,7 @@ export async function sendReferralEmail({
     connectionTimeout: 5000,
     greetingTimeout: 5000,
     socketTimeout: 10000,
-  } as any);
+  } as unknown as nodemailer.TransportOptions);
 
   const htmlContent = `
     <!DOCTYPE html>

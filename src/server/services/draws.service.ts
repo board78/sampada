@@ -635,10 +635,6 @@ export async function generateTicketsForDraw(
   const { series, ticketPrefix, ticketRangeStart, ticketRangeEnd } = draw;
   const now = new Date();
 
-  const rangeSize = Math.min(
-    ticketRangeEnd - ticketRangeStart + 1,
-    100_000,
-  );
   const BATCH = 1_000;
 
   let inserted = 0;
@@ -652,7 +648,7 @@ export async function generateTicketsForDraw(
 
   for (let i = 0; i < series.length; i++) {
     const s = series[i];
-    let seriesCount = basePerSeries + (remainder > 0 ? 1 : 0);
+    const seriesCount = basePerSeries + (remainder > 0 ? 1 : 0);
     if (remainder > 0) remainder--;
 
     if (seriesCount <= 0) continue;

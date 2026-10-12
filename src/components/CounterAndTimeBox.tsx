@@ -29,26 +29,26 @@ export function Counter({ label, value, suffix, compact }: Stat & { compact?: bo
   if (compact) {
     return (
       <motion.article
-        whileHover={{ y: -2, boxShadow: "0 0 18px rgba(251,191,36,0.12)" }}
-        className="rounded-xl border border-white/10 bg-[#1b0b1d]/95 px-3 py-2 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+        whileHover={{ y: -2, boxShadow: "0 0 18px rgba(37,99,235,0.12)" }}
+        className="rounded-xl border border-blue-200/40 bg-white px-3 py-2 shadow-xs"
       >
-        <p className="text-base font-bold tabular-nums leading-none text-amber-300 sm:text-lg">
+        <p className="text-base font-bold tabular-nums leading-none text-blue-700 sm:text-lg">
           {display.toLocaleString("en-IN")}{suffix}
         </p>
-        <p className="mt-1 text-[10px] leading-snug text-zinc-400 sm:text-[11px]">{label}</p>
+        <p className="mt-1 text-[10px] leading-snug text-slate-600 sm:text-[11px]">{label}</p>
       </motion.article>
     );
   }
 
   return (
     <motion.article
-      whileHover={{ y: -4, boxShadow: "0 0 28px rgba(251,191,36,0.22)" }}
-      className="rounded-2xl border border-white/10 bg-[#1b0b1d]/90 p-4 transition"
+      whileHover={{ y: -4, boxShadow: "0 0 28px rgba(37,99,235,0.18)" }}
+      className="rounded-2xl border border-blue-200/40 bg-white p-4 transition shadow-xs"
     >
-      <p className="text-2xl font-bold text-amber-300">
+      <p className="text-2xl font-bold text-blue-700">
         {display.toLocaleString("en-IN")}{suffix}
       </p>
-      <p className="mt-1 text-xs text-zinc-300/85">{label}</p>
+      <p className="mt-1 text-xs text-slate-600">{label}</p>
     </motion.article>
   );
 }
@@ -58,9 +58,9 @@ export function Counter({ label, value, suffix, compact }: Stat & { compact?: bo
 
 export function TimeBox({ value, label }: { value: string; label: string }) {
   return (
-    <div className="sl-time-box flex min-w-0 flex-1 flex-col items-center rounded-xl border border-amber-500/25 bg-gradient-to-b from-white/[0.09] to-black/40 px-2 py-2 shadow-[inset_0_1px_0_rgba(253,230,138,0.12)] sm:px-3">
-      <span className="sl-time-value text-lg font-bold tabular-nums text-amber-300 sm:text-xl">{value}</span>
-      <span className="sl-time-label mt-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-amber-200/50 sm:text-[10px]">{label}</span>
+    <div className="sl-time-box flex min-w-0 flex-1 flex-col items-center rounded-xl border border-blue-200/50 bg-white px-2 py-2 shadow-xs sm:px-3">
+      <span className="sl-time-value text-lg font-bold tabular-nums text-blue-700 sm:text-xl">{value}</span>
+      <span className="sl-time-label mt-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-slate-500 sm:text-[10px]">{label}</span>
     </div>
   );
 }

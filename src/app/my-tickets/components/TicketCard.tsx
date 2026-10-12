@@ -40,20 +40,20 @@ export function TicketCard({ ticket, index }: TicketCardProps) {
       <div className="absolute -inset-full animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#00000000_50%,#f59e0b_100%)] opacity-0 transition-opacity duration-500 group-hover:opacity-30" />
       
       {/* Inner Card */}
-      <div className="royal-panel relative h-full rounded-3xl border border-transparent bg-linear-to-br from-[#1c0d17] to-[#12040c] p-6 shadow-xl backdrop-blur-xl">
+      <div className="royal-panel relative h-full rounded-3xl border border-blue-200/50 bg-white p-6 shadow-sm">
         
         {/* Shimmer Effect */}
-        <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+        <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-blue-500/5 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
 
         {/* Ticket notch decorators */}
-        <div className="absolute -left-2.5 top-[50%] h-5 w-5 -translate-y-1/2 rounded-full border-r border-white/10 bg-[#090205] shadow-[inset_-3px_0_5px_rgba(0,0,0,0.5)]" />
-        <div className="absolute -right-2.5 top-[50%] h-5 w-5 -translate-y-1/2 rounded-full border-l border-white/10 bg-[#090205] shadow-[inset_3px_0_5px_rgba(0,0,0,0.5)]" />
+        <div className="absolute -left-2.5 top-[50%] h-5 w-5 -translate-y-1/2 rounded-full border-r border-blue-200 bg-[#f0f6ff] shadow-inner" />
+        <div className="absolute -right-2.5 top-[50%] h-5 w-5 -translate-y-1/2 rounded-full border-l border-blue-200 bg-[#f0f6ff] shadow-inner" />
 
         {/* Top section: draw info */}
         <div className="flex items-start justify-between gap-3 relative z-10">
           <div className="min-w-0">
-            <h3 className="truncate text-base font-bold text-white transition-colors group-hover:text-amber-300">{ticket.drawName}</h3>
-            <p className="mt-0.5 text-xs font-medium text-zinc-400">{ticket.drawTime}</p>
+            <h3 className="truncate text-base font-bold text-slate-900 transition-colors group-hover:text-blue-700">{ticket.drawName}</h3>
+            <p className="mt-0.5 text-xs font-medium text-slate-500">{ticket.drawTime}</p>
           </div>
           <span className={`shrink-0 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider transition-all duration-300 group-hover:scale-105 ${statusColorClass}`}>
             {statusLabel}
@@ -61,24 +61,24 @@ export function TicketCard({ ticket, index }: TicketCardProps) {
         </div>
 
         {/* Mid section: ticket number */}
-        <div className="my-5 border-t border-dashed border-white/15 pt-5 text-center relative z-10">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-zinc-500">Ticket Number</p>
-          <div className="mt-2 inline-block rounded-xl bg-black/40 px-6 py-2 shadow-inner border border-white/5">
-            <p className="font-mono text-2xl font-extrabold tracking-[0.2em] text-transparent bg-clip-text bg-linear-to-r from-amber-200 to-amber-500 drop-shadow-[0_0_10px_rgba(245,158,11,0.4)]">
+        <div className="my-5 border-t border-dashed border-blue-200/60 pt-5 text-center relative z-10">
+          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-500">Ticket Number</p>
+          <div className="mt-2 inline-block rounded-xl bg-blue-50 px-6 py-2 shadow-xs border border-blue-200/60">
+            <p className="font-mono text-2xl font-extrabold tracking-[0.2em] text-blue-700">
               {ticket.ticketNumber}
             </p>
           </div>
         </div>
 
         {/* Bottom section: prize and booked date */}
-        <div className="flex items-end justify-between border-t border-white/5 pt-4 text-xs relative z-10">
+        <div className="flex items-end justify-between border-t border-slate-100 pt-4 text-xs relative z-10">
           <div>
-            <p className="font-medium text-zinc-500">Prize Pool</p>
-            <p className="mt-1 font-bold text-zinc-100">{ticket.prize}</p>
+            <p className="font-medium text-slate-500">Prize Pool</p>
+            <p className="mt-1 font-bold text-slate-900">{ticket.prize}</p>
           </div>
           <div className="text-right">
-            <p className="font-medium text-zinc-500">Booked On</p>
-            <p className="mt-1 font-semibold text-zinc-300">
+            <p className="font-medium text-slate-500">Booked On</p>
+            <p className="mt-1 font-semibold text-slate-700">
               {new Date(ticket.bookedAt).toLocaleDateString("en-IN", {
                 day: "numeric",
                 month: "short",

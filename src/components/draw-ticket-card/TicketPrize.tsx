@@ -20,7 +20,7 @@ export function TicketPrize({ prizeKicker, prize }: Props) {
           fontWeight: 700,
           letterSpacing: "0.12em",
           textTransform: "uppercase",
-          color: "rgba(255, 255, 255, 0.5)",
+          color: "#475569",
           margin: "0 0 4px",
           fontFamily: "'DM Sans', sans-serif",
         }}
@@ -31,11 +31,10 @@ export function TicketPrize({ prizeKicker, prize }: Props) {
         style={{
           fontSize: "clamp(1.4rem, 4.5vw, 1.85rem)",
           fontWeight: 800,
-          color: "#FFD700",
+          color: "#1d4ed8",
           lineHeight: 1.1,
           margin: 0,
           fontFamily: "'DM Sans', sans-serif",
-          textShadow: "0 0 15px rgba(255, 215, 0, 0.4)",
         }}
       >
         {prize ?? "₹?"}

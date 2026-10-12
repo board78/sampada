@@ -71,22 +71,23 @@ export function DrawTicketCard({ draw, index, language, buyLabel, onBuy }: Props
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.38, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      className="sl-draw-ticket-card"
       whileHover={{
         y: -4,
         scale: 1.01,
-        boxShadow: "0 25px 50px -12px rgba(0,0,0,0.6)",
+        boxShadow: "0 20px 45px -12px rgba(37, 99, 235, 0.22)",
       }}
       style={{
         position: "relative",
-        background: "rgba(255, 255, 255, 0.03)",
-        border: "1px solid rgba(255, 255, 255, 0.08)",
+        background: "#ffffff",
+        border: "1px solid rgba(37, 99, 235, 0.18)",
         borderRadius: 20,
         padding: "16px 20px",
         overflow: "hidden",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
-        boxShadow: "0 10px 30px -10px rgba(0,0,0,0.4)",
+        boxShadow: "0 10px 30px -10px rgba(37, 99, 235, 0.10)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
       }}
@@ -99,7 +100,7 @@ export function DrawTicketCard({ draw, index, language, buyLabel, onBuy }: Props
           left: "-50%",
           width: "200%",
           height: "200%",
-          background: "radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.06), transparent 60%)",
+          background: "radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 60%)",
           pointerEvents: "none",
         }}
       />

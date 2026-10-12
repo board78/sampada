@@ -13,29 +13,29 @@ export function TicketHeader({ draw, language }:
     active: {
       label: language === "hi" ? "सक्रिय" : "Active",
       bg: "rgba(16, 185, 129, 0.15)",
-      color: "#34D399",
+      color: "#047857",
     },
     upcoming: {
       label: language === "hi" ? "आने वाली" : "Upcoming",
-      bg: "#2ECC71",
-      color: "#022C22",
+      bg: "rgba(37, 99, 235, 0.12)",
+      color: "#1d4ed8",
     },
     closed: {
       label: language === "hi" ? "बंद" : "Closed",
-      bg: "rgba(239, 68, 68, 0.15)",
-      color: "#F87171",
+      bg: "rgba(239, 68, 68, 0.12)",
+      color: "#b91c1c",
     },
     drawn: {
       label: language === "hi" ? "निकाला गया" : "Drawn",
-      bg: "rgba(156, 163, 175, 0.15)",
-      color: "#D1D5DB",
+      bg: "rgba(100, 116, 139, 0.12)",
+      color: "#475569",
     },
   };
 
   const currentStatus = statusMap[draw.status] || {
     label: draw.status,
-    bg: "#2ECC71",
-    color: "#022C22",
+    bg: "rgba(37, 99, 235, 0.12)",
+    color: "#1d4ed8",
   };
 
   return (
@@ -44,8 +44,8 @@ export function TicketHeader({ draw, language }:
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
           <span
             style={{
-              background: "linear-gradient(135deg, #FFD700 0%, #FFA500 100%)",
-              color: "#000",
+              background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+              color: "#ffffff",
               padding: "3px 7px",
               borderRadius: 6,
               fontSize: 9,
@@ -55,8 +55,8 @@ export function TicketHeader({ draw, language }:
           >
             {draw.ticketPrefix}
           </span>
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>•</span>
-          <span style={{ fontSize: 10, fontWeight: 500, color: "rgba(255,255,255,0.7)", display: "flex", alignItems: "center", gap: 3 }}>
+          <span style={{ fontSize: 10, color: "#94a3b8" }}>•</span>
+          <span style={{ fontSize: 10, fontWeight: 600, color: "#334155", display: "flex", alignItems: "center", gap: 3 }}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
               <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
               <line x1="4" y1="22" x2="4" y2="15" />
@@ -100,7 +100,7 @@ export function TicketHeader({ draw, language }:
             style={{
               fontSize: 16,
               fontWeight: 800,
-              color: "#FFFFFF",
+              color: "#0f172a",
               margin: 0,
               letterSpacing: "-0.01em",
               fontFamily: "'DM Sans', sans-serif",
@@ -120,8 +120,8 @@ export function TicketHeader({ draw, language }:
                 style={{
                   fontSize: 10,
                   fontWeight: 700,
-                  color: "#000",
-                  backgroundColor: "#FFD700",
+                  color: "#1e40af",
+                  backgroundColor: "#dbeafe",
                   padding: "2px 6px",
                   borderRadius: 4,
                   fontFamily: "'DM Sans', sans-serif",
@@ -136,7 +136,7 @@ export function TicketHeader({ draw, language }:
         <p
           style={{
             fontSize: 11,
-            color: "rgba(255, 255, 255, 0.6)",
+            color: "#64748b",
             margin: "3px 0 0",
             fontFamily: "'DM Sans', sans-serif",
           }}

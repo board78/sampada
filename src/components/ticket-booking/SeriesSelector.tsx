@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { DrawPublic } from "@/lib/draws";
+import type { TicketPage } from "../TicketBookingView";
 
 type Tab = "available" | "lp_special" | "search";
 
@@ -11,7 +12,7 @@ type Props = {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   draw: DrawPublic;
-  ticketData: any; // Using any or picking specific types from TicketPage
+  ticketData: TicketPage | null;
   activeSeries: string;
   setActiveSeries: (series: string) => void;
   setPage: (page: number) => void;
@@ -36,7 +37,7 @@ export function SeriesSelector({
 
   return (
     <>
-      <div className="shrink-0 border-b border-white/8 bg-[#0f0a0c]">
+      <div className="shrink-0 border-b border-slate-200 bg-slate-50/70">
         <div className="flex overflow-x-auto px-4 text-xs font-bold uppercase tracking-[0.12em] sm:px-5">
           {(["available", "lp_special", "search"] as Tab[]).map((tab) => (
             <button
@@ -47,7 +48,7 @@ export function SeriesSelector({
                 if (tab !== "search") setSearchQuery("");
               }}
               className={`relative shrink-0 cursor-pointer px-4 py-3 transition sm:px-5 ${
-                activeTab === tab ? "text-amber-300" : "text-zinc-500 hover:text-zinc-300"
+                activeTab === tab ? "text-blue-700" : "text-slate-500 hover:text-slate-700"
               }`}
             >
               {tab === "available"
@@ -58,7 +59,7 @@ export function SeriesSelector({
               {activeTab === tab && (
                 <motion.div
                   layoutId="book-tab-underline"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-amber-300"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
                 />
               )}
             </button>
@@ -72,30 +73,30 @@ export function SeriesSelector({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search ticket number e.g. 10025"
-              className="w-full rounded-2xl border border-amber-200/20 bg-black/30 px-4 py-2.5 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-amber-300/50"
+              className="sl-input shadow-2xs"
               inputMode="numeric"
             />
           </div>
         )}
       </div>
 
-      <div className="shrink-0 border-b border-white/8 bg-[#0f0a0c] px-4 py-3 sm:px-5">
+      <div className="shrink-0 border-b border-slate-200 bg-slate-50/70 px-4 py-3 sm:px-5">
         {ticketData?.stats && (
-          <div className="mb-3 text-[10px] leading-relaxed text-zinc-400 sm:text-xs">
-            Series: <span className="text-amber-200">{activeSeries}</span>
+          <div className="mb-3 text-[10px] leading-relaxed text-slate-600 sm:text-xs">
+            Series: <span className="font-bold text-blue-700">{activeSeries}</span>
             {" · "}Range:{" "}
-            <span className="text-zinc-200">
+            <span className="font-semibold text-slate-800">
               {draw.ticketPrefix}-{activeSeries}-{activeSeriesRange.start} to{" "}
               {draw.ticketPrefix}-{activeSeries}-{activeSeriesRange.end}
             </span>
             {" · "}Total:{" "}
-            <span className="text-zinc-200">{ticketData.stats.total.toLocaleString("en-IN")}</span>
+            <span className="font-semibold text-slate-800">{ticketData.stats.total.toLocaleString("en-IN")}</span>
             {" · "}Available:{" "}
-            <span className="font-semibold text-emerald-300">
+            <span className="font-bold text-emerald-700">
               {ticketData.stats.available.toLocaleString("en-IN")}
             </span>
             {" · "}Sold:{" "}
-            <span className="font-semibold text-red-400">
+            <span className="font-bold text-red-700">
               {ticketData.stats.sold.toLocaleString("en-IN")}
             </span>
           </div>
@@ -112,24 +113,24 @@ export function SeriesSelector({
               }}
               className={`cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition ${
                 activeSeries === s
-                  ? "border-amber-300 bg-amber-300/15 text-amber-200"
-                  : "border-white/12 text-zinc-400 hover:border-white/25 hover:text-zinc-200"
+                  ? "border-blue-600 bg-blue-50 text-blue-700 shadow-2xs"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-slate-900"
               }`}
             >
               {s} Series
             </button>
           ))}
-          <div className="ml-auto hidden items-center gap-4 text-[10px] font-semibold text-zinc-400 sm:flex">
+          <div className="ml-auto hidden items-center gap-4 text-[10px] font-semibold text-slate-600 sm:flex">
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-emerald-400/40 bg-emerald-400/30" />
+              <span className="h-3 w-3 rounded-sm border border-emerald-500 bg-emerald-100" />
               Available
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-red-400/40 bg-red-400/30" />
+              <span className="h-3 w-3 rounded-sm border border-red-400 bg-red-100" />
               Sold
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-cyan-400/40 bg-cyan-400/30" />
+              <span className="h-3 w-3 rounded-sm border border-blue-400 bg-blue-100" />
               LP Special
             </span>
           </div>

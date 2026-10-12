@@ -331,7 +331,7 @@ export async function getServerSessionUser(): Promise<SafeUser | null> {
 export async function getProfile(userId: string) {
   const db = await getDb();
   const userObjectId = new ObjectId(userId);
-  let user = await db.collection<UserDoc>("users").findOne({ _id: userObjectId });
+  const user = await db.collection<UserDoc>("users").findOne({ _id: userObjectId });
   if (!user) return null;
 
   // Lazy generate referral code for older users who don't have one
@@ -486,7 +486,7 @@ async function sendVerificationEmail(email: string, code: string) {
     connectionTimeout: 5000, // 5 seconds connection timeout
     greetingTimeout: 5000,   // 5 seconds greeting timeout
     socketTimeout: 10000,    // 10 seconds socket inactivity timeout
-  } as any);
+  } as unknown as nodemailer.TransportOptions);
 
   await transporter.sendMail({
     from,
@@ -562,7 +562,7 @@ async function sendPasswordResetEmail(email: string, code: string) {
     connectionTimeout: 5000,
     greetingTimeout: 5000,
     socketTimeout: 10000,
-  } as any);
+  } as unknown as nodemailer.TransportOptions);
 
   await transporter.sendMail({
     from,

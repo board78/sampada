@@ -20,11 +20,11 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
           e.stopPropagation();
           onBuy();
         }}
-        whileHover={{ scale: 1.02, backgroundColor: "#D11A3A" }}
+        whileHover={{ scale: 1.02, backgroundColor: "#1d4ed8" }}
         whileTap={{ scale: 0.98 }}
         style={{
           width: "100%",
-          background: "#C40C30",
+          background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
           border: "none",
           borderRadius: 12,
           padding: "10px 16px",
@@ -38,7 +38,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
           gap: 6,
           fontFamily: "'DM Sans', sans-serif",
           letterSpacing: "0.02em",
-          boxShadow: "0 4px 12px rgba(196, 12, 48, 0.25)",
+          boxShadow: "0 4px 14px rgba(37, 99, 235, 0.3)",
         }}
       >
         <svg
@@ -67,7 +67,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             alignItems: "center",
             fontSize: 10,
             fontWeight: 600,
-            color: "rgba(255, 255, 255, 0.5)",
+            color: "#64748b",
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
@@ -79,7 +79,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             height: 4,
             width: "100%",
             borderRadius: 999,
-            background: "rgba(255, 255, 255, 0.08)",
+            background: "rgba(37, 99, 235, 0.12)",
             overflow: "hidden",
             position: "relative",
           }}
@@ -90,7 +90,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             transition={{ duration: 1, ease: "easeOut" }}
             style={{
               height: "100%",
-              background: "linear-gradient(90deg, #FFD700, #EF4444)",
+              background: "linear-gradient(90deg, #3b82f6, #1d4ed8)",
               borderRadius: 999,
             }}
           />
@@ -105,7 +105,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
           justifyContent: "center",
           gap: 5,
           marginTop: 12,
-          color: "rgba(255, 255, 255, 0.35)",
+          color: "#64748b",
           fontSize: 9.5,
           fontWeight: 500,
           fontFamily: "'DM Sans', sans-serif",
