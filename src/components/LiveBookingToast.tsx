@@ -27,9 +27,11 @@ export function LiveBookingToast() {
 
       try {
         const res = await fetch("/api/tickets/recent");
-        const json = await res.json();
-        if (json.success && Array.isArray(json.data)) {
-          realBookingsRef.current = json.data;
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && Array.isArray(json.data)) {
+            realBookingsRef.current = json.data;
+          }
         }
       } catch (err) {
         console.error("Failed to fetch recent bookings for toast", err);
@@ -42,36 +44,18 @@ export function LiveBookingToast() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Show first toast after 3 seconds
-    const initialTimeout = setTimeout(() => {
-      triggerRandomToast();
-    }, 3000);
-
-    // Trigger every 8 seconds (displays for 4s, hidden for 4s, feels natural)
-    const interval = setInterval(() => {
-      triggerRandomToast();
-    }, 8000);
-
-    return () => {
-      clearTimeout(initialTimeout);
-      clearInterval(interval);
-    };
-  }, []);
 
   const triggerRandomToast = () => {
     toast.dismiss(); // Instantly dismiss all previous toasts
 
     // Try to get an unshown REAL booking
     let bookingToDisplay: { name: string; city: string; tickets: number; drawName: string } | null = null;
-    let isReal = false;
 
     const unshownReal = realBookingsRef.current.find(b => !shownIdsRef.current.has(b.id));
 
     if (unshownReal) {
       shownIdsRef.current.add(unshownReal.id);
       bookingToDisplay = unshownReal;
-      isReal = true;
       // Optional: limit the size of the set so it doesn't grow infinitely
       if (shownIdsRef.current.size > 100) {
         const firstElements = Array.from(shownIdsRef.current).slice(0, 50);
@@ -231,6 +215,23 @@ export function LiveBookingToast() {
       );
     }, 150);
   };
+
+  useEffect(() => {
+    // Show first toast after 3 seconds
+    const initialTimeout = setTimeout(() => {
+      triggerRandomToast();
+    }, 3000);
+
+    // Trigger every 8 seconds (displays for 4s, hidden for 4s, feels natural)
+    const interval = setInterval(() => {
+      triggerRandomToast();
+    }, 8000);
+
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(interval);
+    };
+  }, []);
 
   return null;
 }

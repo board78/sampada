@@ -8,7 +8,7 @@ interface VisitorCounterProps {
   language?: "en" | "hi";
 }
 
-const fetcher = (url: string) => fetch(url).then(r => r.json());
+const fetcher = (url: string) => fetch(url).then(r => r.ok ? r.json() : { count: 0 });
 
 export function VisitorCounter({ language = "en" }: VisitorCounterProps) {
   // Call POST on mount to record view, then let SWR handle the GET polling

@@ -52,16 +52,20 @@ export function proxy(request: NextRequest) {
     // 2. CSRF Origin Validation for mutations (POST, PUT, DELETE, PATCH)
     if (['POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
       const origin = request.headers.get('origin');
-      const host = request.headers.get('host');
+      const host = request.headers.get('x-forwarded-host') ?? request.headers.get('host');
       
       // If origin is present, it must match our host
-      if (origin) {
-        const originUrl = new URL(origin);
-        if (originUrl.host !== host) {
-          return new NextResponse(
-            JSON.stringify({ error: 'Invalid origin (CSRF protection)' }),
-            { status: 403, headers: { 'Content-Type': 'application/json' } }
-          );
+      if (origin && host) {
+        try {
+          const originUrl = new URL(origin);
+          if (originUrl.host !== host) {
+            return new NextResponse(
+              JSON.stringify({ error: 'Invalid origin (CSRF protection)' }),
+              { status: 403, headers: { 'Content-Type': 'application/json' } }
+            );
+          }
+        } catch {
+          // ignore malformed origin URL
         }
       }
     }
