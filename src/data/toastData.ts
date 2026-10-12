@@ -137,7 +137,7 @@ export const DUMMY_BOOKINGS: Booking[] = [
   { name: "Rima Das", city: "Mahagama", tickets: 5, drawName: "vaibhav laxmi" },
   { name: "Sujata Singh", city: "Basantrai", tickets: 1, drawName: "dhan laxmi special" },
   { name: "Pappu Yadav", city: "Bihariganj", tickets: 8, drawName: "riddhi siddhi" },
-  { name: "Sushma Devi", city: "Araria", tickets: 2, drawName: "jai mata di draw" },
+  { name: "Sushi Devi", city: "Araria", tickets: 2, drawName: "jai mata di draw" },
   { name: "Bhupendra Narayan", city: "Kishanganj", tickets: 4, drawName: "sone ki baarish" },
   { name: "Rukmini Devi", city: "Purnia", tickets: 6, drawName: "kuber ratna" },
   { name: "Tarkeshwar Singh", city: "Katihar", tickets: 3, drawName: "shri samridhi" },
