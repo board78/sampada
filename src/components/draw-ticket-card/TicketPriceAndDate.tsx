@@ -14,7 +14,7 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
         display: "flex",
         justifyContent: "space-between",
         alignItems: "flex-start",
-        borderTop: "1px solid rgba(37, 99, 235, 0.12)",
+        borderTop: "1px solid rgba(16, 185, 129, 0.2)",
         paddingTop: 10,
         marginBottom: 14,
       }}
@@ -26,7 +26,7 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
             display: "block",
             fontSize: 8.5,
             fontWeight: 600,
-            color: "#64748b",
+            color: "#94a3b8",
             textTransform: "uppercase",
             letterSpacing: "0.05em",
             marginBottom: 2,
@@ -39,11 +39,11 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
           style={{
             fontSize: 20,
             fontWeight: 700,
-            color: "#0f172a",
+            color: "#ffffff",
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
-          ₹{pricePerTicket} <span style={{ fontWeight: 500, fontSize: 14, color: "#64748b" }}>{perTicketLabel}</span>
+          ₹{pricePerTicket} <span style={{ fontWeight: 500, fontSize: 14, color: "#94a3b8" }}>{perTicketLabel}</span>
         </span>
       </div>
 
@@ -54,7 +54,7 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
             display: "block",
             fontSize: 8.5,
             fontWeight: 600,
-            color: "#64748b",
+            color: "#94a3b8",
             textTransform: "uppercase",
             letterSpacing: "0.05em",
             marginBottom: 2,
@@ -67,7 +67,7 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
           style={{
             fontSize: 11,
             fontWeight: 700,
-            color: "#0f172a",
+            color: "#ffffff",
             display: "inline-flex",
             alignItems: "center",
             gap: 3,
@@ -83,7 +83,7 @@ export function TicketPriceAndDate({ pricePerTicket, perTicketLabel, language, d
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ color: "#2563eb" }}
+            style={{ color: "#10b981" }}
           >
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
             <line x1="16" y1="2" x2="16" y2="6" />

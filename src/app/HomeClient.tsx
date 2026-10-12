@@ -97,9 +97,9 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
     <div className="royal-surface royal-grid royal-frame relative min-h-screen overflow-hidden bg-background text-foreground">
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-fuchsia-500/16 blur-3xl" />
-        <div className="absolute -right-40 top-32 h-96 w-96 rounded-full bg-orange-500/16 blur-3xl" />
-        <div className="absolute -bottom-48 left-[20%] h-104 w-104 rounded-full bg-amber-300/12 blur-3xl" />
+        <div className="absolute -left-32 -top-24 h-80 w-80 rounded-full bg-emerald-500/15 blur-3xl" />
+        <div className="absolute -right-40 top-32 h-96 w-96 rounded-full bg-emerald-600/10 blur-3xl" />
+        <div className="absolute -bottom-48 left-[20%] h-104 w-104 rounded-full bg-emerald-400/10 blur-3xl" />
       </div>
 
       {/* SEO: Visually hidden H1 — readable by Google, invisible to users.
@@ -118,7 +118,7 @@ export function HomeClient({ initialDraws, initialResults, initialStats }: HomeC
                 {/* ── LEFT COLUMN ─────────────────────────────────────────── */}
                 <div className="flex min-w-0 flex-col gap-3 sm:gap-4">
                   {/* Hero carousel — static import, no data needed */}
-                  <section className="royal-panel royal-panel-strong sl-hero-outline relative w-full overflow-hidden rounded-3xl border-2 border-amber-500/35 bg-transparent px-5 pb-3 pt-5 sm:rounded-[28px] sm:px-6 sm:pt-6">
+                  <section className="royal-panel royal-panel-strong sl-hero-outline relative w-full overflow-hidden rounded-3xl border-2 border-emerald-500/35 bg-transparent px-5 pb-3 pt-5 sm:rounded-[28px] sm:px-6 sm:pt-6">
                     <div className="relative flex w-full flex-col items-center gap-4">
                       <div className="">
                         <VerticalImageCarousel className="p-0" intervalMs={3000} />

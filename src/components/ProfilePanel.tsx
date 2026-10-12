@@ -44,7 +44,7 @@ export function ProfilePanel({ open, user, onClose, onUserUpdated }: Props) {
             animate={{ x: 0 }}
             exit={{ x: 420 }}
             transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            className="sl-profile-panel royal-panel flex h-full w-full max-w-md flex-col border-l border-blue-200/60 bg-white p-5 shadow-2xl sm:p-6 text-slate-900"
+            className="sl-profile-panel royal-panel flex h-full w-full max-w-md flex-col border-l border-emerald-500/30 bg-[#080808] p-5 shadow-2xl sm:p-6 text-white"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-4">
@@ -54,19 +54,19 @@ export function ProfilePanel({ open, user, onClose, onUserUpdated }: Props) {
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
                     disabled={uploadingImage}
-                    className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-blue-300 bg-blue-50 text-blue-700 transition hover:border-blue-500 shadow-sm"
+                    className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full border-2 border-emerald-500/40 bg-emerald-950/60 text-emerald-300 transition hover:border-emerald-400 shadow-sm"
                   >
                     {activeUser.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={activeUser.image} alt={activeUser.name} className="h-full w-full object-cover" />
                     ) : (
-                      <span className="text-2xl font-bold text-blue-700">
+                      <span className="text-2xl font-bold text-emerald-400">
                         {activeUser.name.charAt(0).toUpperCase()}
                       </span>
                     )}
                     
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-blue-900/40 opacity-0 transition-opacity group-hover:opacity-100">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                         <polyline points="17 8 12 3 7 8" />
@@ -76,8 +76,8 @@ export function ProfilePanel({ open, user, onClose, onUserUpdated }: Props) {
 
                     {/* Loading Spinner */}
                     {uploadingImage && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-blue-900/40">
-                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-t-white border-blue-300/40" />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/60">
+                        <span className="h-5 w-5 animate-spin rounded-full border-2 border-t-white border-emerald-400/40" />
                       </div>
                     )}
                   </button>
@@ -91,28 +91,27 @@ export function ProfilePanel({ open, user, onClose, onUserUpdated }: Props) {
                 </div>
 
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-700">My Profile</p>
-                  <h2 className="mt-1 text-xl sm:text-2xl font-bold text-slate-900">{activeUser.name}</h2>
-                  <p className="mt-0.5 text-sm text-slate-500">{activeUser.email}</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-emerald-400">My Profile</p>
+                  <h2 className="mt-1 text-xl sm:text-2xl font-bold text-white">{activeUser.name}</h2>
+                  <p className="mt-0.5 text-sm text-zinc-400">{activeUser.email}</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={onClose}
-                className="sl-profile-close rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 transition hover:bg-blue-100"
+                className="sl-profile-close rounded-full border border-zinc-700 bg-zinc-850 px-3 py-1.5 text-xs font-semibold text-zinc-300 transition hover:bg-zinc-800"
               >
                 Close
               </button>
             </div>
 
-            {/* Admin Dashboard shortcut — only for admins */}
             {activeUser.role === "admin" && (
               <a
                 href="/admin"
-                className="sl-admin-btn mt-5 flex items-center gap-3 rounded-2xl border border-blue-200 bg-linear-to-r from-blue-50 to-indigo-50 px-4 py-3.5 text-left transition hover:bg-blue-100/70 shadow-2xs"
+                className="sl-admin-btn mt-5 flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-950/40 px-4 py-3.5 text-left transition hover:bg-emerald-900/50 shadow-2xs"
                 onClick={onClose}
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/20">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/20">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                     <rect x="3" y="3" width="7" height="7" rx="1" />
                     <rect x="14" y="3" width="7" height="7" rx="1" />
@@ -121,10 +120,10 @@ export function ProfilePanel({ open, user, onClose, onUserUpdated }: Props) {
                   </svg>
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-sm font-bold text-slate-900">Admin Dashboard</span>
-                  <span className="mt-0.5 block text-xs text-slate-500">Manage draws, users & results</span>
+                  <span className="block text-sm font-bold text-white">Admin Dashboard</span>
+                  <span className="mt-0.5 block text-xs text-zinc-400">Manage draws, users & results</span>
                 </span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden className="shrink-0 text-blue-600">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden className="shrink-0 text-emerald-400">
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </a>

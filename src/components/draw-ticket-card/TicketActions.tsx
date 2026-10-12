@@ -20,11 +20,11 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
           e.stopPropagation();
           onBuy();
         }}
-        whileHover={{ scale: 1.02, backgroundColor: "#1d4ed8" }}
+        whileHover={{ scale: 1.02, backgroundColor: "#059669" }}
         whileTap={{ scale: 0.98 }}
         style={{
           width: "100%",
-          background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+          background: "linear-gradient(135deg, #10b981, #059669)",
           border: "none",
           borderRadius: 12,
           padding: "10px 16px",
@@ -38,7 +38,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
           gap: 6,
           fontFamily: "'DM Sans', sans-serif",
           letterSpacing: "0.02em",
-          boxShadow: "0 4px 14px rgba(37, 99, 235, 0.3)",
+          boxShadow: "0 4px 18px rgba(16, 185, 129, 0.4)",
         }}
       >
         <svg
@@ -67,7 +67,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             alignItems: "center",
             fontSize: 10,
             fontWeight: 600,
-            color: "#64748b",
+            color: "#94a3b8",
             fontFamily: "'DM Sans', sans-serif",
           }}
         >
@@ -79,7 +79,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             height: 4,
             width: "100%",
             borderRadius: 999,
-            background: "rgba(37, 99, 235, 0.12)",
+            background: "rgba(16, 185, 129, 0.15)",
             overflow: "hidden",
             position: "relative",
           }}
@@ -90,7 +90,7 @@ export function TicketActions({ onBuy, buyLabel, total, fakeProgress, language }
             transition={{ duration: 1, ease: "easeOut" }}
             style={{
               height: "100%",
-              background: "linear-gradient(90deg, #3b82f6, #1d4ed8)",
+              background: "linear-gradient(90deg, #059669, #10b981, #34d399)",
               borderRadius: 999,
             }}
           />

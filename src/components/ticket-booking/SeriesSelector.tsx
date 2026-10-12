@@ -37,7 +37,7 @@ export function SeriesSelector({
 
   return (
     <>
-      <div className="shrink-0 border-b border-slate-200 bg-slate-50/70">
+      <div className="shrink-0 border-b border-zinc-800 bg-[#0a0a0a]">
         <div className="flex overflow-x-auto px-4 text-xs font-bold uppercase tracking-[0.12em] sm:px-5">
           {(["available", "lp_special", "search"] as Tab[]).map((tab) => (
             <button
@@ -48,7 +48,7 @@ export function SeriesSelector({
                 if (tab !== "search") setSearchQuery("");
               }}
               className={`relative shrink-0 cursor-pointer px-4 py-3 transition sm:px-5 ${
-                activeTab === tab ? "text-blue-700" : "text-slate-500 hover:text-slate-700"
+                activeTab === tab ? "text-emerald-400" : "text-zinc-400 hover:text-zinc-200"
               }`}
             >
               {tab === "available"
@@ -59,7 +59,7 @@ export function SeriesSelector({
               {activeTab === tab && (
                 <motion.div
                   layoutId="book-tab-underline"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500"
                 />
               )}
             </button>
@@ -80,23 +80,23 @@ export function SeriesSelector({
         )}
       </div>
 
-      <div className="shrink-0 border-b border-slate-200 bg-slate-50/70 px-4 py-3 sm:px-5">
+      <div className="shrink-0 border-b border-zinc-800 bg-[#0a0a0a] px-4 py-3 sm:px-5">
         {ticketData?.stats && (
-          <div className="mb-3 text-[10px] leading-relaxed text-slate-600 sm:text-xs">
-            Series: <span className="font-bold text-blue-700">{activeSeries}</span>
+          <div className="mb-3 text-[10px] leading-relaxed text-zinc-400 sm:text-xs">
+            Series: <span className="font-bold text-emerald-400">{activeSeries}</span>
             {" · "}Range:{" "}
-            <span className="font-semibold text-slate-800">
+            <span className="font-semibold text-zinc-200">
               {draw.ticketPrefix}-{activeSeries}-{activeSeriesRange.start} to{" "}
               {draw.ticketPrefix}-{activeSeries}-{activeSeriesRange.end}
             </span>
             {" · "}Total:{" "}
-            <span className="font-semibold text-slate-800">{ticketData.stats.total.toLocaleString("en-IN")}</span>
+            <span className="font-semibold text-zinc-200">{ticketData.stats.total.toLocaleString("en-IN")}</span>
             {" · "}Available:{" "}
-            <span className="font-bold text-emerald-700">
+            <span className="font-bold text-emerald-400">
               {ticketData.stats.available.toLocaleString("en-IN")}
             </span>
             {" · "}Sold:{" "}
-            <span className="font-bold text-red-700">
+            <span className="font-bold text-red-400">
               {ticketData.stats.sold.toLocaleString("en-IN")}
             </span>
           </div>
@@ -113,24 +113,24 @@ export function SeriesSelector({
               }}
               className={`cursor-pointer rounded-lg border px-3 py-1.5 text-xs font-bold uppercase tracking-widest transition ${
                 activeSeries === s
-                  ? "border-blue-600 bg-blue-50 text-blue-700 shadow-2xs"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-slate-900"
+                  ? "border-emerald-500 bg-emerald-950/70 text-emerald-300 shadow-2xs"
+                  : "border-zinc-800 bg-[#111111] text-zinc-400 hover:border-emerald-500/50 hover:text-white"
               }`}
             >
               {s} Series
             </button>
           ))}
-          <div className="ml-auto hidden items-center gap-4 text-[10px] font-semibold text-slate-600 sm:flex">
+          <div className="ml-auto hidden items-center gap-4 text-[10px] font-semibold text-zinc-400 sm:flex">
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-emerald-500 bg-emerald-100" />
+              <span className="h-3 w-3 rounded-sm border border-emerald-500 bg-emerald-950" />
               Available
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-red-400 bg-red-100" />
+              <span className="h-3 w-3 rounded-sm border border-red-500 bg-red-950" />
               Sold
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="h-3 w-3 rounded-sm border border-blue-400 bg-blue-100" />
+              <span className="h-3 w-3 rounded-sm border border-teal-500 bg-teal-950" />
               LP Special
             </span>
           </div>

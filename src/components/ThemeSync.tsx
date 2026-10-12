@@ -6,10 +6,10 @@ import { useEffect } from "react";
 export function ThemeSync() {
   useEffect(() => {
     try {
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
     } catch {
-      document.documentElement.setAttribute("data-theme", "light");
+      document.documentElement.setAttribute("data-theme", "dark");
     }
   }, []);
 

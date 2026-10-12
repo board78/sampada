@@ -29,7 +29,7 @@ export function AuthFormFields({
   return (
     <form onSubmit={submit} className="mt-5 space-y-3">
       <label className="block">
-        <span className="text-xs font-semibold text-slate-700">Email</span>
+        <span className="text-xs font-semibold text-zinc-300">Email</span>
         <input
           type="email"
           value={email}
@@ -44,7 +44,7 @@ export function AuthFormFields({
       {mode === "signin" ? (
         <>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">Password</span>
+            <span className="text-xs font-semibold text-zinc-300">Password</span>
             <input
               type="password"
               value={password}
@@ -59,7 +59,7 @@ export function AuthFormFields({
             <button
               type="button"
               onClick={() => switchMode("forgot_password")}
-              className="text-xs font-semibold text-blue-700 transition hover:text-blue-800"
+              className="text-xs font-semibold text-emerald-400 transition hover:text-emerald-300"
             >
               Forgot Password?
             </button>
@@ -69,7 +69,7 @@ export function AuthFormFields({
 
       {(mode === "register" || mode === "forgot_password") && step === "code" ? (
         <label className="block">
-          <span className="text-xs font-semibold text-slate-700">OTP</span>
+          <span className="text-xs font-semibold text-zinc-300">OTP</span>
           <input
             value={code}
             onChange={(event) => setCode(event.target.value.replace(/\D/g, "").slice(0, 6))}
@@ -86,7 +86,7 @@ export function AuthFormFields({
       {mode === "register" && step === "password" ? (
         <>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">Full Name</span>
+            <span className="text-xs font-semibold text-zinc-300">Full Name</span>
             <input
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -96,7 +96,7 @@ export function AuthFormFields({
             />
           </label>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">Password</span>
+            <span className="text-xs font-semibold text-zinc-300">Password</span>
             <input
               type="password"
               value={password}
@@ -108,7 +108,7 @@ export function AuthFormFields({
             />
           </label>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">Confirm Password</span>
+            <span className="text-xs font-semibold text-zinc-300">Confirm Password</span>
             <input
               type="password"
               value={confirmPassword}
@@ -125,7 +125,7 @@ export function AuthFormFields({
       {mode === "forgot_password" && step === "password" ? (
         <>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">New Password</span>
+            <span className="text-xs font-semibold text-zinc-300">New Password</span>
             <input
               type="password"
               value={password}
@@ -137,7 +137,7 @@ export function AuthFormFields({
             />
           </label>
           <label className="block">
-            <span className="text-xs font-semibold text-slate-700">Confirm New Password</span>
+            <span className="text-xs font-semibold text-zinc-300">Confirm New Password</span>
             <input
               type="password"
               value={confirmPassword}
@@ -152,19 +152,19 @@ export function AuthFormFields({
       ) : null}
 
       {devCode ? (
-        <div className="rounded-2xl border border-blue-200 bg-blue-50 px-4 py-3 text-xs leading-5 text-blue-900">
+        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-950/50 px-4 py-3 text-xs leading-5 text-emerald-300">
           Local dev code: <span className="font-bold tracking-[0.2em]">{devCode}</span>
         </div>
       ) : null}
 
       {status ? (
-        <p className="rounded-2xl border border-emerald-300 bg-emerald-50 px-4 py-3 text-xs text-emerald-800">
+        <p className="rounded-2xl border border-emerald-500/40 bg-emerald-950/60 px-4 py-3 text-xs text-emerald-300">
           {status}
         </p>
       ) : null}
 
       {error ? (
-        <p className="rounded-2xl border border-red-300 bg-red-50 px-4 py-3 text-xs text-red-800">
+        <p className="rounded-2xl border border-red-500/40 bg-red-950/60 px-4 py-3 text-xs text-red-300">
           {error}
         </p>
       ) : null}
@@ -172,7 +172,7 @@ export function AuthFormFields({
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-full bg-linear-to-r from-blue-600 to-blue-700 px-5 py-3 text-sm font-bold text-white shadow-md shadow-blue-500/25 transition hover:from-blue-700 hover:to-blue-800 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-full bg-linear-to-r from-emerald-500 to-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-md shadow-emerald-500/25 transition hover:from-emerald-600 hover:to-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
       >
         {loading
           ? "Please wait..."

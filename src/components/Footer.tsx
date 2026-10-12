@@ -74,10 +74,10 @@ export function Footer({ language = "en" }: FooterProps) {
   };
 
   return (
-    <footer className="royal-panel relative mt-10 overflow-hidden rounded-4xl sm:rounded-[40px] border border-blue-200/50 bg-white shadow-sm">
+    <footer className="royal-panel relative mt-10 overflow-hidden rounded-4xl sm:rounded-[40px] border border-emerald-500/25 bg-[#060606] shadow-sm">
       {/* Background glow lines */}
-      <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] h-125 w-125 rounded-full bg-blue-500/5 blur-[120px]" />
-      <div className="pointer-events-none absolute top-[-10%] left-[-10%] h-100 w-100 rounded-full bg-indigo-500/5 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-[-20%] right-[-10%] h-125 w-125 rounded-full bg-emerald-500/5 blur-[120px]" />
+      <div className="pointer-events-none absolute top-[-10%] left-[-10%] h-100 w-100 rounded-full bg-emerald-600/5 blur-[100px]" />
 
       <div className="relative px-6 py-10 md:px-10 md:py-16 lg:px-16 lg:py-20">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
@@ -85,27 +85,27 @@ export function Footer({ language = "en" }: FooterProps) {
           {/* Brand column */}
           <div className="flex flex-col gap-6 sm:col-span-2 lg:col-span-5 lg:pr-10">
             <div>
-              <span className="bg-linear-to-r from-blue-700 via-blue-600 to-indigo-700 bg-clip-text text-3xl md:text-4xl font-black tracking-widest text-transparent uppercase">
+              <span className="bg-linear-to-r from-emerald-400 via-emerald-500 to-green-600 bg-clip-text text-3xl md:text-4xl font-black tracking-widest text-transparent uppercase">
                 Subhlaxmi
               </span>
-              <div className="mt-1 h-1 w-12 rounded-full bg-linear-to-r from-blue-600 to-indigo-600" />
+              <div className="mt-1 h-1 w-12 rounded-full bg-linear-to-r from-emerald-500 to-green-500" />
             </div>
             
-            <p className="max-w-md text-sm text-slate-600 leading-relaxed font-medium">
+            <p className="max-w-md text-sm text-zinc-400 leading-relaxed font-medium">
               {brandDesc}
             </p>
 
             {/* 18+ badge & warning */}
-            <div className="mt-2 flex max-w-md flex-col gap-3 rounded-2xl border border-red-200 bg-red-50/70 p-4 shadow-xs">
-              <span className="flex items-center gap-2 text-xs font-bold text-red-700 uppercase tracking-wider">
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-100 text-red-700">
+            <div className="mt-2 flex max-w-md flex-col gap-3 rounded-2xl border border-red-900/50 bg-red-950/40 p-4 shadow-xs">
+              <span className="flex items-center gap-2 text-xs font-bold text-red-400 uppercase tracking-wider">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-red-900/50 text-red-400">
                   <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
                 </span>
                 {playLabel}
               </span>
-              <p className="text-[11px] text-slate-600 leading-relaxed font-medium">
+              <p className="text-[11px] text-zinc-400 leading-relaxed font-medium">
                 {playDesc}
               </p>
             </div>
@@ -113,7 +113,7 @@ export function Footer({ language = "en" }: FooterProps) {
 
           {/* Quick links column */}
           <div className="flex flex-col gap-5 lg:col-span-3 lg:pl-10">
-            <h4 className="text-sm font-bold uppercase tracking-[0.15em] text-slate-900">
+            <h4 className="text-sm font-bold uppercase tracking-[0.15em] text-white">
               {colQuickLinks}
             </h4>
             <ul className="flex flex-col gap-3.5">
@@ -121,9 +121,9 @@ export function Footer({ language = "en" }: FooterProps) {
                 <li key={idx}>
                   <Link
                     href={link.href}
-                    className="group flex w-fit items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-blue-700"
+                    className="group flex w-fit items-center gap-2 text-sm font-semibold text-zinc-300 transition-colors hover:text-emerald-400"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-300 transition-all duration-300 group-hover:w-3 group-hover:bg-blue-600" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-800 transition-all duration-300 group-hover:w-3 group-hover:bg-emerald-400" />
                     {link.label}
                   </Link>
                 </li>
@@ -133,10 +133,10 @@ export function Footer({ language = "en" }: FooterProps) {
 
           {/* Contact/Support Column */}
           <div className="flex flex-col gap-5 lg:col-span-4">
-            <h4 className="text-sm font-bold uppercase tracking-[0.15em] text-slate-900">
+            <h4 className="text-sm font-bold uppercase tracking-[0.15em] text-white">
               {colContact}
             </h4>
-            <p className="text-sm text-slate-600 font-medium leading-relaxed">
+            <p className="text-sm text-zinc-400 font-medium leading-relaxed">
               {isHi
                 ? "हमारे ग्राहक सपोर्ट चैनल लाइव हैं। भुगतान पूछताछ या सामान्य सहायता के लिए कभी भी पहुंचें।"
                 : "Our customer support channels are live. Reach out anytime for payment inquiries or general assistance."}
@@ -148,12 +148,12 @@ export function Footer({ language = "en" }: FooterProps) {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-3 transition-all hover:-translate-y-0.5 hover:bg-blue-50 hover:border-blue-200 shadow-2xs"
+                    className="group flex items-center gap-3 rounded-2xl border border-emerald-500/25 bg-[#0d0d0d] p-3 transition-all hover:-translate-y-0.5 hover:bg-emerald-950/40 hover:border-emerald-400 shadow-2xs"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 transition-colors group-hover:border-blue-200">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-black border border-emerald-500/30 transition-colors group-hover:border-emerald-400">
                       {item.icon}
                     </div>
-                    <span className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-700 truncate">
+                    <span className="text-sm font-semibold text-zinc-200 transition-colors group-hover:text-emerald-300 truncate">
                       {item.label}
                     </span>
                   </a>
@@ -165,22 +165,22 @@ export function Footer({ language = "en" }: FooterProps) {
         </div>
 
         {/* Bottom section line & copyright info */}
-        <div className="mt-16 flex flex-col items-center gap-6 border-t border-slate-100 pt-8 sm:flex-row sm:justify-between">
-          <p className="text-xs font-bold text-slate-500 tracking-wider uppercase">
+        <div className="mt-16 flex flex-col items-center gap-6 border-t border-zinc-900 pt-8 sm:flex-row sm:justify-between">
+          <p className="text-xs font-bold text-zinc-500 tracking-wider uppercase">
             &copy; {new Date().getFullYear()} Subhlaxmi. All rights reserved.
           </p>
 
           {/* Security indicators */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-end">
-            <div className="flex items-center gap-2 rounded-xl bg-emerald-50 border border-emerald-200 px-3 py-1.5">
-              <FaShieldHalved className="w-3.5 h-3.5 text-emerald-600" />
-              <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-widest">
+            <div className="flex items-center gap-2 rounded-xl bg-emerald-950/60 border border-emerald-500/40 px-3 py-1.5">
+              <FaShieldHalved className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-widest">
                 SSL Encrypted
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-xl bg-blue-50 border border-blue-200 px-3 py-1.5">
-              <FaBoltLightning className="w-3.5 h-3.5 text-blue-600" />
-              <span className="text-[10px] font-bold text-blue-700 uppercase tracking-widest">
+            <div className="flex items-center gap-2 rounded-xl bg-emerald-950/60 border border-emerald-500/40 px-3 py-1.5">
+              <FaBoltLightning className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-widest">
                 Instant Draw
               </span>
             </div>
@@ -196,7 +196,7 @@ export function Footer({ language = "en" }: FooterProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-2xl border border-blue-200 bg-white text-blue-700 shadow-lg backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-blue-50 active:scale-95"
+            className="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-2xl border border-emerald-500/30 bg-[#0d0d0d] text-emerald-400 shadow-lg backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:bg-emerald-950/60 active:scale-95"
             aria-label="Scroll to top"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">

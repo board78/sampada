@@ -35,7 +35,7 @@ export function CartCheckoutSidebar({
   startCheckout,
 }: CartCheckoutSidebarProps) {
   return (
-    <aside className="sl-cart-aside mt-6 rounded-3xl border border-white/10 bg-[#0f0a0c] p-5 lg:mt-0 lg:self-start lg:sticky lg:top-24">
+    <aside className="sl-cart-aside mt-6 rounded-3xl border border-emerald-500/20 bg-[#080808] p-5 lg:mt-0 lg:self-start lg:sticky lg:top-24">
       <p className="sl-cart-summary-title text-xs font-bold uppercase tracking-[0.18em] text-zinc-300">
         Order summary
       </p>
@@ -50,7 +50,7 @@ export function CartCheckoutSidebar({
           <span className="sl-cart-value text-zinc-200">₹{formatMoney(totals.subtotal)}</span>
         </div>
         {totals.hasDiscount && (
-          <div className="sl-cart-row flex justify-between text-amber-400">
+          <div className="sl-cart-row flex justify-between text-emerald-400">
             <span>Referral Discount (10%)</span>
             <span className="sl-cart-value">-₹{formatMoney(totals.discountAmount)}</span>
           </div>
@@ -60,8 +60,8 @@ export function CartCheckoutSidebar({
           <span className="sl-cart-value text-zinc-200">₹{formatMoney(totals.gst)}</span>
         </div>
         
-        <div className="mt-4 border-t border-white/10 pt-4">
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-500">
+        <div className="mt-4 border-t border-zinc-800 pt-4">
+          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-zinc-400">
             Referral Code (Optional)
           </label>
           <input
@@ -69,11 +69,11 @@ export function CartCheckoutSidebar({
             value={referralCode}
             onChange={(e) => setReferralCode(e.target.value.toUpperCase())}
             placeholder="Enter code"
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white placeholder:text-zinc-600 focus:border-amber-400/50 focus:outline-none"
+            className="sl-input w-full"
           />
         </div>
 
-        <div className="sl-cart-total flex justify-between border-t border-white/10 pt-3 text-base font-bold text-amber-300 mt-4">
+        <div className="sl-cart-total flex justify-between border-t border-zinc-800 pt-3 text-base font-bold text-emerald-400 mt-4">
           <span>Total</span>
           <span>₹{formatMoney(totals.grandTotal)}</span>
         </div>

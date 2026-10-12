@@ -32,36 +32,36 @@ function AuthModalBody({
       animate={{ y: 0, scale: 1 }}
       exit={{ y: 16, scale: 0.98 }}
       transition={{ duration: 0.2 }}
-      className="royal-panel relative w-full max-w-md overflow-hidden rounded-[28px] border border-blue-200/50 bg-white p-5 shadow-2xl sm:p-6"
+      className="royal-panel relative w-full max-w-md overflow-hidden rounded-[28px] border border-emerald-500/30 bg-[#0a0a0a] text-white p-5 shadow-2xl sm:p-6"
     >
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-xs text-slate-600 transition hover:bg-slate-200 hover:text-slate-900"
+        className="absolute right-4 top-4 rounded-full border border-zinc-700 bg-zinc-850 px-3 py-1 text-xs text-zinc-300 transition hover:bg-zinc-700 hover:text-white"
       >
         Close
       </button>
 
       {mode === "signin" ? (
         <div className="pr-16">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-400">
             Welcome back
           </p>
-          <h2 className="mt-2 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">Sign in to Subhlaxmi</h2>
+          <h2 className="mt-2 text-2xl font-bold leading-tight text-white sm:text-3xl">Sign in to Subhlaxmi</h2>
         </div>
       ) : mode === "register" ? (
         <div className="pr-16">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-400">
             New account
           </p>
-          <h2 className="mt-2 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">Create your account</h2>
+          <h2 className="mt-2 text-2xl font-bold leading-tight text-white sm:text-3xl">Create your account</h2>
         </div>
       ) : (
         <div className="pr-16">
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-700">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-emerald-400">
             Reset Password
           </p>
-          <h2 className="mt-2 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">Recover your account</h2>
+          <h2 className="mt-2 text-2xl font-bold leading-tight text-white sm:text-3xl">Recover your account</h2>
         </div>
       )}
 
@@ -76,10 +76,10 @@ function AuthModalBody({
                 key={item}
                 className={`rounded-full px-3 py-2 text-center ${
                   isActive
-                    ? "border border-blue-300 bg-blue-100 text-blue-800 font-bold"
+                    ? "border border-emerald-500 bg-emerald-950/80 text-emerald-300 font-bold shadow-xs shadow-emerald-500/20"
                     : isDone
-                      ? "border border-emerald-300 bg-emerald-100 text-emerald-800 font-bold"
-                      : "border border-slate-200 bg-slate-50 text-slate-400"
+                      ? "border border-teal-500 bg-teal-950/60 text-teal-300 font-bold"
+                      : "border border-zinc-800 bg-zinc-900 text-zinc-500"
                 }`}
               >
                 {item === "email" ? "Email" : item === "code" ? "OTP" : "Password"}
@@ -91,14 +91,14 @@ function AuthModalBody({
 
       <AuthFormFields hookArgs={hookArgs} />
 
-      <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-600">
+      <div className="mt-4 flex items-center justify-center gap-2 text-xs text-zinc-400">
         {mode === "signin" ? (
           <>
             <span>New user?</span>
             <button
               type="button"
               onClick={() => switchMode("register")}
-              className="font-bold text-blue-700 transition hover:text-blue-800"
+              className="font-bold text-emerald-400 transition hover:text-emerald-300"
             >
               Create account
             </button>
@@ -109,7 +109,7 @@ function AuthModalBody({
             <button
               type="button"
               onClick={() => switchMode("signin")}
-              className="font-bold text-blue-700 transition hover:text-blue-800"
+              className="font-bold text-emerald-400 transition hover:text-emerald-300"
             >
               Sign in
             </button>
@@ -120,7 +120,7 @@ function AuthModalBody({
             <button
               type="button"
               onClick={() => switchMode("signin")}
-              className="font-bold text-blue-700 transition hover:text-blue-800"
+              className="font-bold text-emerald-400 transition hover:text-emerald-300"
             >
               Sign in
             </button>

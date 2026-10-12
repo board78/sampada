@@ -126,11 +126,11 @@ export function PopularDrawsSection({
   const totalPages = Math.max(1, Math.ceil(sortedDraws.length / 6));
 
   return (
-    <section className="royal-panel sl-popular-draws-section rounded-3xl border border-blue-200/40 bg-white p-4 sm:rounded-[28px] sm:p-5 shadow-sm">
+    <section className="royal-panel sl-popular-draws-section rounded-3xl border border-emerald-500/25 bg-[#070707] p-4 sm:rounded-[28px] sm:p-5 shadow-sm">
       <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4 relative">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-bold sm:text-xl text-slate-900">{popularTitle}</h2>
-          <span className="hidden sm:inline-flex rounded-full bg-blue-50 border border-blue-200/50 px-2.5 py-0.5 text-[10px] text-blue-700 font-mono tracking-wider font-semibold">IST</span>
+          <h2 className="text-sm font-bold sm:text-xl text-white">{popularTitle}</h2>
+          <span className="hidden sm:inline-flex rounded-full bg-emerald-950/60 border border-emerald-500/40 px-2.5 py-0.5 text-[10px] text-emerald-300 font-mono tracking-wider font-semibold">IST</span>
         </div>
         
         {/* Sort/Filter Dropdown */}
@@ -138,19 +138,19 @@ export function PopularDrawsSection({
           <button
             type="button"
             onClick={() => setFilterOpen(!filterOpen)}
-            className="flex items-center justify-center gap-1.5 rounded-full border border-blue-200/50 bg-white p-2 sm:px-3 sm:py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-900 hover:border-blue-300 cursor-pointer shadow-xs"
+            className="flex items-center justify-center gap-1.5 rounded-full border border-emerald-500/30 bg-[#0d0d0d] p-2 sm:px-3 sm:py-1.5 text-xs font-semibold text-zinc-200 transition hover:bg-[#141414] hover:text-white hover:border-emerald-400 cursor-pointer shadow-xs"
             aria-label="Sort & Filter"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
             </svg>
             <span className="hidden sm:inline">{language === "hi" ? "फ़िल्टर / क्रम" : "Sort & Filter"}</span>
             {sortBy !== "default" ? (
-              <span className="hidden sm:inline-flex ml-1 text-[10px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-medium">
+              <span className="hidden sm:inline-flex ml-1 text-[10px] bg-emerald-950/80 text-emerald-300 px-2 py-0.5 rounded-full font-medium">
                 {sortOptions.find(o => o.value === sortBy)?.[language === "hi" ? "labelHi" : "labelEn"]}
               </span>
             ) : (
-              <span className="hidden sm:inline-flex ml-1 text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full">
+              <span className="hidden sm:inline-flex ml-1 text-[10px] bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded-full">
                 {language === "hi" ? "डिफ़ॉल्ट" : "Default"}
               </span>
             )}
@@ -163,9 +163,9 @@ export function PopularDrawsSection({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
-                className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-blue-200/60 bg-white p-1.5 shadow-2xl z-50 origin-top-right"
+                className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-emerald-500/30 bg-[#0d0d0d] p-1.5 shadow-2xl z-50 origin-top-right"
               >
-                <div className="px-3 py-2 border-b border-slate-100 mb-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                <div className="px-3 py-2 border-b border-zinc-800 mb-1 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
                   {language === "hi" ? "क्रमबद्ध करें" : "Sort By"}
                 </div>
                 <div className="max-h-64 overflow-y-auto space-y-0.5 hide-scrollbar">
@@ -178,13 +178,13 @@ export function PopularDrawsSection({
                         onClick={() => handleSortChange(option.value)}
                         className={`w-full text-left px-3 py-2 rounded-xl text-xs font-medium transition flex items-center justify-between cursor-pointer ${
                           active
-                            ? "bg-blue-50 text-blue-700 font-semibold"
-                            : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                            ? "bg-emerald-950/80 text-emerald-300 font-semibold"
+                            : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
                         }`}
                       >
                         <span>{language === "hi" ? option.labelHi : option.labelEn}</span>
                         {active && (
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-blue-600">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-400">
                             <polyline points="20 6 9 17 4 12" />
                           </svg>
                         )}
@@ -199,9 +199,9 @@ export function PopularDrawsSection({
       </div>
 
       {sortedDraws.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-blue-200/60 bg-blue-50/50 px-4 py-10 text-center">
-          <p className="text-sm font-semibold text-slate-700">No active draws available</p>
-          <p className="mt-1 text-xs text-slate-500">New draws will appear here once activated by the admin.</p>
+        <div className="rounded-2xl border border-dashed border-emerald-500/20 bg-black/50 px-4 py-10 text-center">
+          <p className="text-sm font-semibold text-zinc-300">No active draws available</p>
+          <p className="mt-1 text-xs text-zinc-500">New draws will appear here once activated by the admin.</p>
         </div>
       ) : (
         <>
@@ -219,15 +219,15 @@ export function PopularDrawsSection({
           </div>
 
           {/* Pagination */}
-          <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
+          <div className="mt-4 flex items-center justify-between border-t border-zinc-900 pt-4">
             <button type="button" onClick={() => setDrawsPage((p) => Math.max(1, p - 1))} disabled={drawsPage === 1}
-              className="flex items-center gap-1.5 rounded-xl border border-blue-200/50 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-900 disabled:opacity-40 disabled:cursor-not-allowed shadow-2xs">
+              className="flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-[#0d0d0d] px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:bg-emerald-950/40 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed shadow-2xs">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden><path d="M15 18l-6-6 6-6" /></svg>
               Previous
             </button>
-            <span className="text-[11px] font-semibold text-slate-600">Page {drawsPage} of {totalPages}</span>
+            <span className="text-[11px] font-semibold text-zinc-400">Page {drawsPage} of {totalPages}</span>
             <button type="button" onClick={() => setDrawsPage((p) => Math.min(totalPages, p + 1))} disabled={drawsPage >= totalPages}
-              className="flex items-center gap-1.5 rounded-xl border border-blue-200/50 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-blue-50 hover:text-blue-900 disabled:opacity-40 disabled:cursor-not-allowed shadow-2xs">
+              className="flex items-center gap-1.5 rounded-xl border border-emerald-500/30 bg-[#0d0d0d] px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:bg-emerald-950/40 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed shadow-2xs">
               Next
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden><path d="M9 18l6-6-6-6" /></svg>
             </button>

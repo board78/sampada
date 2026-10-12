@@ -209,7 +209,7 @@ export default async function RootLayout({
   ];
 
   return (
-    <html lang="en" data-theme="light" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className="h-full antialiased" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

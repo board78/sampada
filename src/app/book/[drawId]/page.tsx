@@ -147,12 +147,12 @@ export default function BookDrawPage() {
                 </button>
               </div>
             ) : loadError === "failed" ? (
-              <div className="royal-panel mt-4 rounded-3xl border border-blue-200/50 bg-white p-8 text-center shadow-sm">
-                <p className="text-lg font-bold text-slate-900">Could not load draw</p>
+              <div className="royal-panel mt-4 rounded-3xl border border-emerald-500/20 bg-[#0a0a0a] p-8 text-center shadow-sm text-white">
+                <p className="text-lg font-bold text-white">Could not load draw</p>
                 <button
                   type="button"
                   onClick={() => router.refresh()}
-                  className="mt-6 rounded-full border border-blue-200 bg-blue-50 px-6 py-2.5 text-sm font-semibold text-blue-800 transition hover:bg-blue-100"
+                  className="mt-6 rounded-full border border-emerald-500/30 bg-emerald-950/60 px-6 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-900/50"
                 >
                   Try again
                 </button>

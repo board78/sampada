@@ -250,7 +250,7 @@ export function HeaderBar({
   );
 
   return (
-    <header className="sticky top-0 z-20 border-b border-amber-500/20 bg-[#17060d]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-20 border-b border-emerald-500/20 bg-black/95 backdrop-blur-xl">
       <div className="mx-auto w-full max-w-450 px-4 py-2 sm:px-6 sm:py-2.5 lg:px-12 lg:py-3">
         {/* Mobile: brand + cart, theme, menu only */}
         <div className="flex items-center justify-between gap-3 lg:hidden">
@@ -329,7 +329,7 @@ export function HeaderBar({
                   >
                     <span className="relative z-10">{item}</span>
                     <span
-                      className={`absolute left-3 right-3 -bottom-1.5 h-0.5 rounded-full bg-amber-400 origin-left transition-transform duration-300 ${
+                      className={`absolute left-3 right-3 -bottom-1.5 h-0.5 rounded-full bg-emerald-400 origin-left transition-transform duration-300 ${
                         isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                       }`}
                     />
@@ -340,14 +340,14 @@ export function HeaderBar({
           </div>
 
           <div className="flex items-center gap-2 text-sm">
-            <div className="sl-lang-switch rounded-full border border-white/15 bg-black/20 p-1">
+            <div className="sl-lang-switch rounded-full border border-emerald-500/30 bg-black/50 p-1">
               <button
                 type="button"
                 onClick={() => onLanguageChange("en")}
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   language === "en"
-                    ? "sl-lang-active bg-white text-zinc-900"
-                    : "sl-lang-inactive text-zinc-200"
+                    ? "sl-lang-active bg-emerald-600 text-white"
+                    : "sl-lang-inactive text-zinc-400 hover:text-white"
                 }`}
               >
                 EN
@@ -357,8 +357,8 @@ export function HeaderBar({
                 onClick={() => onLanguageChange("hi")}
                 className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                   language === "hi"
-                    ? "sl-lang-active bg-white text-zinc-900"
-                    : "sl-lang-inactive text-zinc-200"
+                    ? "sl-lang-active bg-emerald-600 text-white"
+                    : "sl-lang-inactive text-zinc-400 hover:text-white"
                 }`}
               >
                 हिं
@@ -369,9 +369,9 @@ export function HeaderBar({
               <button
                 type="button"
                 onClick={onProfileClick}
-                className="sl-header-profile-btn flex items-center gap-2 rounded-full border border-amber-200/20 px-3 py-2 text-zinc-100 transition hover:border-amber-200/40"
+                className="sl-header-profile-btn flex items-center gap-2 rounded-full border border-emerald-500/30 px-3 py-2 text-zinc-100 transition hover:border-emerald-400"
               >
-                <span className="sl-header-profile-avatar flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-r from-amber-300 to-orange-500 text-xs font-bold text-[#2d1400]">
+                <span className="sl-header-profile-avatar flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-r from-emerald-400 to-green-600 text-xs font-bold text-black">
                   {authUser.name.slice(0, 1).toUpperCase()}
                 </span>
                 <span className="hidden max-w-28 truncate text-xs font-semibold sm:inline">

@@ -53,22 +53,22 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className="royal-panel sl-insight-column flex w-full min-w-0 flex-col gap-3 rounded-3xl border border-blue-200/40 bg-white p-4 sm:gap-3.5 sm:rounded-[28px] sm:p-4 shadow-sm"
+      className="royal-panel sl-insight-column flex w-full min-w-0 flex-col gap-3 rounded-3xl border border-emerald-500/25 bg-black p-4 sm:gap-3.5 sm:rounded-[28px] sm:p-4 shadow-sm"
     >
       {/* Goddess illustration */}
-      <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-blue-200/30 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08),transparent_50%),#f8fbff]">
+      <div className="relative aspect-4/3 w-full overflow-hidden rounded-2xl border border-emerald-500/25 bg-[radial-gradient(circle_at_top,rgba(16,185,129,0.15),transparent_60%),#070707]">
         <Image src="/goddesslaxmi.png" alt="Goddess Laxmi illustration" fill priority sizes="(max-width: 1279px) 100vw, 320px" className="object-contain p-3 sm:p-3.5" />
       </div>
 
       {/* Testimonials */}
-      <div className="relative flex w-full flex-col gap-3 overflow-hidden rounded-2xl border border-blue-200/40 bg-blue-50/40 px-3 py-3.5 sm:px-4 sm:py-4">
+      <div className="relative flex w-full flex-col gap-3 overflow-hidden rounded-2xl border border-emerald-500/25 bg-black/60 px-3 py-3.5 sm:px-4 sm:py-4">
         <canvas ref={testimonialCanvasRef} className="pointer-events-none absolute inset-0 z-2 h-full w-full" aria-hidden />
 
         <div className="relative z-5 flex flex-col gap-3">
           <div>
-            <p className="text-[9px] uppercase tracking-[0.18em] text-slate-500 sm:text-[10px]">{currentCopy.testimonialLabel}</p>
-            <h3 className="mt-1 text-sm font-semibold leading-snug text-slate-900 sm:text-base">{currentCopy.testimonialTitle}</h3>
-            <p className="mt-1.5 text-[10px] leading-relaxed text-slate-500 sm:text-[11px]">{currentCopy.testimonialHelper}</p>
+            <p className="text-[9px] uppercase tracking-[0.18em] text-emerald-400 font-semibold sm:text-[10px]">{currentCopy.testimonialLabel}</p>
+            <h3 className="mt-1 text-sm font-semibold leading-snug text-white sm:text-base">{currentCopy.testimonialTitle}</h3>
+            <p className="mt-1.5 text-[10px] leading-relaxed text-zinc-400 sm:text-[11px]">{currentCopy.testimonialHelper}</p>
           </div>
 
           <AnimatePresence mode="wait">
@@ -78,26 +78,26 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -6, scale: 0.98 }}
               transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col rounded-xl border border-blue-200/50 bg-white p-2.5 sm:p-3.5 shadow-xs"
+              className="flex flex-col rounded-xl border border-emerald-500/30 bg-[#0c0c0c] p-2.5 sm:p-3.5 shadow-xs"
             >
               <div className="flex items-start gap-2">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-blue-500 to-blue-700 text-[11px] font-bold text-white sm:h-9 sm:w-9 sm:text-xs shadow-xs">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-emerald-500 to-green-700 text-[11px] font-bold text-white sm:h-9 sm:w-9 sm:text-xs shadow-xs">
                   {active.name.slice(0, 1)}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-[11px] font-semibold text-slate-900 sm:text-xs">{active.name}</p>
-                  <p className="text-[10px] text-slate-500 sm:text-[11px]">{active.location}</p>
+                  <p className="text-[11px] font-semibold text-white sm:text-xs">{active.name}</p>
+                  <p className="text-[10px] text-zinc-400 sm:text-[11px]">{active.location}</p>
                 </div>
-                <span className="shrink-0 rounded-full bg-blue-50 border border-blue-200/50 px-2 py-0.5 text-[9px] font-semibold text-blue-700 sm:text-[10px]">{active.tag}</span>
+                <span className="shrink-0 rounded-full bg-emerald-950/60 border border-emerald-500/40 px-2 py-0.5 text-[9px] font-semibold text-emerald-300 sm:text-[10px]">{active.tag}</span>
               </div>
-              <p className="mt-3 text-[11px] leading-relaxed text-slate-700 sm:text-xs sm:leading-relaxed">&quot;{active.quote}&quot;</p>
+              <p className="mt-3 text-[11px] leading-relaxed text-zinc-300 sm:text-xs sm:leading-relaxed">&quot;{active.quote}&quot;</p>
             </motion.div>
           </AnimatePresence>
 
           <div className="flex justify-center gap-1.5 pt-0.5">
             {testimonials.map((item, i) => (
               <button key={(item as { id?: string }).id ?? item.name} type="button" onClick={() => setActiveIndex(i)}
-                className={`h-1.5 rounded-full transition sm:h-2 ${i === activeIndex ? "w-5 bg-blue-600 sm:w-6" : "w-1.5 bg-blue-200 hover:bg-blue-300"}`}
+                className={`h-1.5 rounded-full transition sm:h-2 ${i === activeIndex ? "w-5 bg-emerald-500 sm:w-6" : "w-1.5 bg-emerald-950 hover:bg-emerald-800"}`}
                 aria-label={`Show testimonial ${i + 1}`}
               />
             ))}
@@ -107,7 +107,7 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
 
       {/* Stats */}
       <div className="flex flex-col gap-2">
-        <p className="text-[9px] uppercase tracking-[0.16em] text-slate-500 sm:text-[10px]">{currentCopy.statsTitle}</p>
+        <p className="text-[9px] uppercase tracking-[0.16em] text-emerald-400 font-semibold sm:text-[10px]">{currentCopy.statsTitle}</p>
         <div className="flex flex-col gap-2">
           {currentCopy.stats.map((item) => <Counter key={item.label} {...item} compact />)}
         </div>
@@ -115,15 +115,15 @@ export function RightInsightColumn({ currentCopy, countdown, nextDraw }: Props) 
 
       {/* Countdown */}
       {nextDraw && (
-        <div className="sl-mega-countdown rounded-2xl border border-blue-200/60 bg-linear-to-br from-blue-50/80 to-indigo-50/80 px-3 py-3.5 shadow-sm sm:px-4 sm:py-4">
-          <p className="sl-countdown-kicker text-[10px] font-bold uppercase tracking-[0.16em] text-blue-700 sm:text-xs">{currentCopy.countdownTitle}</p>
+        <div className="sl-mega-countdown rounded-2xl border border-emerald-500/35 bg-linear-to-br from-[#050505] to-[#041a0d] px-3 py-3.5 shadow-sm sm:px-4 sm:py-4">
+          <p className="sl-countdown-kicker text-[10px] font-bold uppercase tracking-[0.16em] text-emerald-400 sm:text-xs">{currentCopy.countdownTitle}</p>
           <div className="mt-2 flex gap-1.5 sm:gap-2">
             <TimeBox value={countdown.days} label={currentCopy.days} />
             <TimeBox value={countdown.hours} label={currentCopy.hrs} />
             <TimeBox value={countdown.minutes} label={currentCopy.mins} />
             <TimeBox value={countdown.seconds} label={currentCopy.secs} />
           </div>
-          <p className="sl-countdown-foot mt-2 text-[10px] font-medium text-slate-600 sm:text-xs">{currentCopy.nextDrawAt} {formatDrawTime(nextDraw)}</p>
+          <p className="sl-countdown-foot mt-2 text-[10px] font-medium text-zinc-400 sm:text-xs">{currentCopy.nextDrawAt} {formatDrawTime(nextDraw)}</p>
         </div>
       )}
     </motion.section>

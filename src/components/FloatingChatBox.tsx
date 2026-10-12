@@ -54,8 +54,8 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 1,
     text: (
-      <span className="flex items-center gap-2 font-semibold text-slate-900">
-        <Hand className="w-4 h-4 text-blue-600 shrink-0" /> Hi! How can we help you?
+      <span className="flex items-center gap-2 font-semibold text-emerald-400">
+        <Hand className="w-4 h-4 text-emerald-400 shrink-0" /> Hi! How can we help you?
       </span>
     ),
     isBot: true,
@@ -127,20 +127,20 @@ export function FloatingChatBox() {
             const ticketList = (
               <div className="flex flex-col gap-2 mt-2 w-full">
                 {data.tickets.slice(0, 5).map((t: TicketItem, i: number) => (
-                  <div key={i} className="bg-slate-50 p-2.5 rounded-xl text-xs border border-slate-200 shadow-2xs">
-                    <p className="font-bold text-slate-900">{t.drawName}</p>
-                    <p className="text-slate-600 mt-0.5">Ticket: <span className="font-semibold text-blue-700">{t.ticketNumber}</span></p>
+                  <div key={i} className="bg-[#111111] p-2.5 rounded-xl text-xs border border-emerald-500/20 shadow-2xs">
+                    <p className="font-bold text-white">{t.drawName}</p>
+                    <p className="text-zinc-400 mt-0.5">Ticket: <span className="font-semibold text-emerald-400">{t.ticketNumber}</span></p>
                     <div className="flex justify-between items-center mt-1.5">
-                      <p className="text-slate-500 font-medium">{t.drawTime}</p>
+                      <p className="text-zinc-400 font-medium">{t.drawTime}</p>
                       <span className={`px-2 py-0.5 rounded text-[10px] font-semibold uppercase ${
-                        t.status === 'booked' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'
+                        t.status === 'booked' ? 'bg-emerald-950 text-emerald-300 border border-emerald-700' : 'bg-amber-950 text-amber-300 border border-amber-700'
                       }`}>
                         {(t.status || '').replace('_', ' ')}
                       </span>
                     </div>
                   </div>
                 ))}
-                {data.tickets.length > 5 && <p className="text-xs text-center text-slate-600 font-medium mt-1">+{data.tickets.length - 5} more in your account</p>}
+                {data.tickets.length > 5 && <p className="text-xs text-center text-zinc-400 font-medium mt-1">+{data.tickets.length - 5} more in your account</p>}
               </div>
             );
             addBotMessage({ text: "Here are your recent tickets:", component: ticketList }, 0);
@@ -187,14 +187,14 @@ export function FloatingChatBox() {
           const latestResult = data.results.find((r: ResultItem) => r.drawName && r.drawName.toLowerCase().includes(option.toLowerCase()));
           if (latestResult) {
             const resultUI = (
-              <div className="bg-slate-50 p-3 rounded-xl mt-2 text-sm border border-slate-200 shadow-2xs w-full">
-                <p className="font-bold text-blue-700 mb-2 border-b border-slate-200 pb-1">{latestResult.drawName}</p>
-                <div className="space-y-2 text-slate-700">
-                  <p className="flex items-center gap-2"><Trophy className="w-4 h-4 text-amber-500 shrink-0" /> <span className="font-semibold text-slate-900">Winning Ticket:</span> <span className="font-bold text-blue-700">{latestResult.winningTicket}</span></p>
-                  <p className="flex items-center gap-2"><Banknote className="w-4 h-4 text-emerald-600 shrink-0" /> <span className="font-semibold text-slate-900">Prize:</span> <span className="font-bold text-emerald-700">{latestResult.prize}</span></p>
-                  {latestResult.winnerName && <p className="flex items-center gap-2"><User className="w-4 h-4 text-blue-600 shrink-0" /> <span className="font-semibold text-slate-900">Winner:</span> <span className="font-medium text-slate-900">{latestResult.winnerName}</span></p>}
+              <div className="bg-[#111111] p-3 rounded-xl mt-2 text-sm border border-emerald-500/20 shadow-2xs w-full text-zinc-200">
+                <p className="font-bold text-emerald-400 mb-2 border-b border-zinc-800 pb-1">{latestResult.drawName}</p>
+                <div className="space-y-2 text-zinc-300">
+                  <p className="flex items-center gap-2"><Trophy className="w-4 h-4 text-amber-400 shrink-0" /> <span className="font-semibold text-white">Winning Ticket:</span> <span className="font-bold text-emerald-400">{latestResult.winningTicket}</span></p>
+                  <p className="flex items-center gap-2"><Banknote className="w-4 h-4 text-emerald-400 shrink-0" /> <span className="font-semibold text-white">Prize:</span> <span className="font-bold text-emerald-400">{latestResult.prize}</span></p>
+                  {latestResult.winnerName && <p className="flex items-center gap-2"><User className="w-4 h-4 text-emerald-400 shrink-0" /> <span className="font-semibold text-white">Winner:</span> <span className="font-medium text-zinc-200">{latestResult.winnerName}</span></p>}
                 </div>
-                <p className="text-[10px] text-slate-500 mt-2.5 pt-2 border-t border-slate-200 font-medium">Declared: {new Date(latestResult.declaredAt).toLocaleString("en-IN")}</p>
+                <p className="text-[10px] text-zinc-400 mt-2.5 pt-2 border-t border-zinc-800 font-medium">Declared: {new Date(latestResult.declaredAt).toLocaleString("en-IN")}</p>
               </div>
             );
             addBotMessage({ text: `Here is the latest result for ${option}:`, component: resultUI }, 0);
@@ -219,14 +219,14 @@ export function FloatingChatBox() {
           const draw = data.draws.find((d: DrawItem) => d.name && d.name.toLowerCase().includes(option.toLowerCase()));
           if (draw) {
             const drawUI = (
-              <div className="bg-slate-50 p-3 rounded-xl mt-2 text-sm border border-slate-200 shadow-2xs w-full">
-                <p className="font-bold text-blue-700 mb-2 border-b border-slate-200 pb-1">{draw.name}</p>
+              <div className="bg-[#111111] p-3 rounded-xl mt-2 text-sm border border-emerald-500/20 shadow-2xs w-full text-zinc-200">
+                <p className="font-bold text-emerald-400 mb-2 border-b border-zinc-800 pb-1">{draw.name}</p>
                 <div className="grid grid-cols-2 gap-y-2 gap-x-1 text-xs">
-                  <span className="text-slate-600">Ticket Price:</span> <span className="font-semibold text-slate-900">₹{draw.pricePerTicket}</span>
-                  <span className="text-slate-600">Draw Date:</span> <span className="font-semibold text-slate-900">{new Date(draw.drawDate).toLocaleDateString("en-IN")}</span>
-                  <span className="text-slate-600">Draw Time:</span> <span className="font-semibold text-slate-900">{draw.drawTime}</span>
-                  <span className="text-slate-600">First Prize:</span> <span className="font-semibold text-emerald-700">{draw.prizeAmount || "N/A"}</span>
-                  <span className="text-slate-600">Total Tickets:</span> <span className="font-semibold text-slate-900">{draw.totalTickets || "0"}</span>
+                  <span className="text-zinc-400">Ticket Price:</span> <span className="font-semibold text-white">₹{draw.pricePerTicket}</span>
+                  <span className="text-zinc-400">Draw Date:</span> <span className="font-semibold text-white">{new Date(draw.drawDate).toLocaleDateString("en-IN")}</span>
+                  <span className="text-zinc-400">Draw Time:</span> <span className="font-semibold text-white">{draw.drawTime}</span>
+                  <span className="text-zinc-400">First Prize:</span> <span className="font-semibold text-emerald-400">{draw.prizeAmount || "N/A"}</span>
+                  <span className="text-zinc-400">Total Tickets:</span> <span className="font-semibold text-white">{draw.totalTickets || "0"}</span>
                 </div>
               </div>
             );
@@ -320,17 +320,17 @@ export function FloatingChatBox() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="relative mb-4 w-85 sm:w-100 overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-2xl"
+            className="relative mb-4 w-85 sm:w-100 overflow-hidden rounded-2xl border border-emerald-500/30 bg-[#080808] text-white shadow-2xl"
           >
             {/* Header */}
-            <div className="flex items-center justify-between bg-linear-to-r from-blue-700 via-blue-600 to-indigo-700 px-4 py-3.5 text-white shadow-sm">
+            <div className="flex items-center justify-between bg-linear-to-r from-emerald-800 via-emerald-700 to-teal-800 px-4 py-3.5 text-white shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 p-1 backdrop-blur-xs">
                   <Image src="/chaticon.png" alt="Chat Support" width={32} height={32} className="h-full w-full object-contain" />
                 </div>
                 <div>
                   <h3 className="text-sm font-bold text-white tracking-wide">Subhlaxmi Assistant</h3>
-                  <p className="text-[11px] text-blue-100 flex items-center gap-1.5 font-medium">
+                  <p className="text-[11px] text-emerald-100 flex items-center gap-1.5 font-medium">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-emerald-300/40"></span> Online 24/7
                   </p>
                 </div>
@@ -345,7 +345,7 @@ export function FloatingChatBox() {
             </div>
 
             {/* Messages Area */}
-            <div className="h-95 overflow-y-auto p-4 bg-slate-50/70">
+            <div className="h-95 overflow-y-auto p-4 bg-[#050505]">
               <div className="flex flex-col gap-3.5">
                 {messages.map((msg) => (
                   <div
@@ -355,8 +355,8 @@ export function FloatingChatBox() {
                     <div
                       className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-2xs ${
                         msg.isBot
-                          ? "rounded-tl-none bg-white text-slate-800 border border-slate-200/90 font-normal"
-                          : "rounded-tr-none bg-blue-600 text-white font-medium shadow-xs"
+                          ? "rounded-tl-none bg-[#111111] text-zinc-200 border border-emerald-500/20 font-normal"
+                          : "rounded-tr-none bg-linear-to-r from-emerald-600 to-teal-600 text-white font-medium shadow-xs"
                       }`}
                     >
                       {msg.text && (
@@ -375,9 +375,9 @@ export function FloatingChatBox() {
                               <button
                                 key={i}
                                 onClick={() => handleOptionClick(opt)}
-                                className="group flex items-center gap-2.5 text-left bg-blue-50/90 hover:bg-blue-600 hover:text-white text-blue-700 font-semibold py-2.5 px-3.5 rounded-xl border border-blue-200/80 transition-all text-xs hover:border-blue-300 shadow-2xs hover:shadow-xs active:scale-[0.99]"
+                                className="group flex items-center gap-2.5 text-left bg-emerald-950/60 hover:bg-emerald-600 hover:text-white text-emerald-300 font-semibold py-2.5 px-3.5 rounded-xl border border-emerald-500/30 transition-all text-xs hover:border-emerald-400 shadow-2xs hover:shadow-xs active:scale-[0.99]"
                               >
-                                {Icon && <span className="text-blue-600 group-hover:text-white transition-colors shrink-0">{Icon}</span>}
+                                {Icon && <span className="text-emerald-400 group-hover:text-white transition-colors shrink-0">{Icon}</span>}
                                 <span className="group-hover:text-white transition-colors">{opt}</span>
                               </button>
                             );
@@ -390,10 +390,10 @@ export function FloatingChatBox() {
                 
                 {isTyping && (
                   <div className="flex justify-start">
-                    <div className="rounded-2xl rounded-tl-none bg-white border border-slate-200 px-4 py-3 shadow-2xs flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce"></span>
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
-                      <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
+                    <div className="rounded-2xl rounded-tl-none bg-[#111111] border border-emerald-500/20 px-4 py-3 shadow-2xs flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"></span>
+                      <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.15s' }}></span>
+                      <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: '0.3s' }}></span>
                     </div>
                   </div>
                 )}
@@ -402,7 +402,7 @@ export function FloatingChatBox() {
             </div>
 
             {/* Input Area */}
-            <div className="border-t border-slate-200 p-3 bg-white">
+            <div className="border-t border-emerald-500/20 p-3 bg-[#080808]">
               <form onSubmit={handleSend} className="relative flex items-center">
                 <input
                   type="text"
@@ -414,7 +414,7 @@ export function FloatingChatBox() {
                 <button
                   type="submit"
                   disabled={!message.trim()}
-                  className="absolute right-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white transition-all hover:bg-blue-700 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:hover:scale-100 disabled:hover:bg-blue-600 shadow-xs"
+                  className="absolute right-1.5 flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white transition-all hover:bg-emerald-500 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:hover:scale-100 disabled:hover:bg-emerald-600 shadow-xs"
                   aria-label="Send message"
                 >
                   <IoSend className="h-4 w-4 ml-0.5" />
@@ -423,7 +423,7 @@ export function FloatingChatBox() {
               <div className="mt-2 flex justify-center">
                 <button
                   onClick={() => setShowConfirmPopup(true)}
-                  className="text-[11px] font-semibold text-slate-500 hover:text-blue-700 hover:underline transition-colors"
+                  className="text-[11px] font-semibold text-zinc-400 hover:text-emerald-400 hover:underline transition-colors"
                 >
                   Restart Conversation
                 </button>
@@ -437,30 +437,30 @@ export function FloatingChatBox() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="absolute inset-0 z-10 flex items-center justify-center bg-slate-900/40 backdrop-blur-2xs p-4"
+                  className="absolute inset-0 z-10 flex items-center justify-center bg-black/70 backdrop-blur-2xs p-4"
                 >
                   <motion.div
                     initial={{ scale: 0.9, y: 10 }}
                     animate={{ scale: 1, y: 0 }}
                     exit={{ scale: 0.9, y: 10 }}
-                    className="w-[90%] rounded-2xl bg-white p-5 text-center shadow-2xl border border-blue-100"
+                    className="w-[90%] rounded-2xl bg-[#0f0f0f] p-5 text-center shadow-2xl border border-emerald-500/30 text-white"
                   >
-                    <h4 className="mb-2 text-sm font-bold text-slate-900">
+                    <h4 className="mb-2 text-sm font-bold text-white">
                       Start fresh?
                     </h4>
-                    <p className="mb-4 text-xs text-slate-600 leading-relaxed">
+                    <p className="mb-4 text-xs text-zinc-400 leading-relaxed">
                       Do you want to start a new conversation and clear previous messages?
                     </p>
                     <div className="flex justify-center gap-3">
                       <button
                         onClick={() => setShowConfirmPopup(false)}
-                        className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-200 border border-slate-200"
+                        className="rounded-full bg-zinc-800 px-4 py-1.5 text-xs font-semibold text-zinc-300 transition-colors hover:bg-zinc-700 border border-zinc-700"
                       >
                         Cancel
                       </button>
                       <button
                         onClick={handleRestart}
-                        className="rounded-full bg-blue-600 px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-blue-700 shadow-xs"
+                        className="rounded-full bg-emerald-600 px-4 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-500 shadow-xs"
                       >
                         Yes, Restart
                       </button>
@@ -476,7 +476,7 @@ export function FloatingChatBox() {
       {/* Floating Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-tr from-blue-700 via-blue-600 to-indigo-600 shadow-xl shadow-blue-500/30 ring-4 ring-blue-500/20 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/40 active:scale-95"
+        className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-linear-to-tr from-emerald-600 via-emerald-500 to-teal-500 shadow-xl shadow-emerald-500/30 ring-4 ring-emerald-500/20 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/40 active:scale-95"
         whileTap={{ scale: 0.95 }}
         aria-label="Open support chat"
       >

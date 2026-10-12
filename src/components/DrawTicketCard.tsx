@@ -75,19 +75,19 @@ export function DrawTicketCard({ draw, index, language, buyLabel, onBuy }: Props
       whileHover={{
         y: -4,
         scale: 1.01,
-        boxShadow: "0 20px 45px -12px rgba(37, 99, 235, 0.22)",
+        boxShadow: "0 20px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(16, 185, 129, 0.25)",
       }}
       style={{
         position: "relative",
-        background: "#ffffff",
-        border: "1px solid rgba(37, 99, 235, 0.18)",
+        background: "#080808",
+        border: "1px solid rgba(16, 185, 129, 0.25)",
         borderRadius: 20,
         padding: "16px 20px",
         overflow: "hidden",
         cursor: "pointer",
         display: "flex",
         flexDirection: "column",
-        boxShadow: "0 10px 30px -10px rgba(37, 99, 235, 0.10)",
+        boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(16, 185, 129, 0.08)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
       }}
@@ -100,7 +100,7 @@ export function DrawTicketCard({ draw, index, language, buyLabel, onBuy }: Props
           left: "-50%",
           width: "200%",
           height: "200%",
-          background: "radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 60%)",
+          background: "radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12), transparent 60%)",
           pointerEvents: "none",
         }}
       />

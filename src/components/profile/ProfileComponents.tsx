@@ -25,15 +25,15 @@ export function ContactDetailsSection({
   const dirty = name.trim() !== user.name || phone.trim() !== (user.phone ?? "");
 
   return (
-    <section className="mt-6 rounded-3xl border border-blue-200/60 bg-white p-5 shadow-xs">
-      <h3 className="font-bold text-slate-900">Contact details</h3>
-      <p className="mt-1 text-xs leading-5 text-slate-500">
+    <section className="mt-6 rounded-3xl border border-emerald-500/30 bg-[#0a0a0a] p-5 shadow-xs text-white">
+      <h3 className="font-bold text-white">Contact details</h3>
+      <p className="mt-1 text-xs leading-5 text-zinc-400">
         Used for UPI payments at checkout. Email is from your account sign-in.
       </p>
 
       <div className="mt-4 space-y-3">
         <label className="block">
-          <span className="text-xs font-semibold text-slate-700">Full name</span>
+          <span className="text-xs font-semibold text-zinc-300">Full name</span>
           <input
             type="text"
             value={name}
@@ -44,17 +44,17 @@ export function ContactDetailsSection({
         </label>
 
         <label className="block">
-          <span className="text-xs font-semibold text-slate-700">Email</span>
+          <span className="text-xs font-semibold text-zinc-300">Email</span>
           <input
             type="email"
             value={user.email}
             readOnly
-            className="sl-input mt-1.5 bg-slate-50 text-slate-500 border-slate-200 cursor-not-allowed"
+            className="sl-input mt-1.5 bg-zinc-900 text-zinc-500 border-zinc-800 cursor-not-allowed"
           />
         </label>
 
         <label className="block">
-          <span className="text-xs font-semibold text-slate-700">Mobile (10 digits)</span>
+          <span className="text-xs font-semibold text-zinc-300">Mobile (10 digits)</span>
           <input
             type="tel"
             inputMode="numeric"
@@ -75,7 +75,7 @@ export function ContactDetailsSection({
               phone: phone.trim() || "",
             })
           }
-          className="w-full rounded-full bg-linear-to-r from-blue-600 to-blue-700 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-blue-500/25 transition hover:from-blue-700 hover:to-blue-800 disabled:opacity-50"
+          className="w-full rounded-full bg-linear-to-r from-emerald-500 to-emerald-600 px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-emerald-500/25 transition hover:from-emerald-600 hover:to-emerald-700 disabled:opacity-50"
         >
           {saving ? "Saving…" : "Save contact details"}
         </button>
@@ -96,14 +96,14 @@ export function SettingToggle({
   onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex cursor-pointer items-center justify-between gap-4 rounded-2xl border border-blue-200/50 bg-slate-50 p-3">
+    <label className="flex cursor-pointer items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-[#0a0a0a] p-3">
       <span>
-        <span className="block text-sm font-semibold text-slate-800">{label}</span>
-        <span className="mt-1 block text-xs leading-5 text-slate-500">{description}</span>
+        <span className="block text-sm font-semibold text-white">{label}</span>
+        <span className="mt-1 block text-xs leading-5 text-zinc-400">{description}</span>
       </span>
       <div
         className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-          checked ? "bg-blue-600" : "bg-slate-300"
+          checked ? "bg-emerald-500" : "bg-zinc-700"
         }`}
       >
         <span
@@ -124,13 +124,13 @@ export function SettingToggle({
 
 export function TicketBookingHistory({ tickets }: { tickets?: TicketBooking[] }) {
   return (
-    <section className="mt-4 rounded-3xl border border-blue-200/60 bg-white p-5 shadow-xs">
+    <section className="mt-4 rounded-3xl border border-emerald-500/30 bg-[#0a0a0a] p-5 shadow-xs text-white">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <h3 className="font-bold text-slate-900">Ticket Booking History</h3>
-          <p className="mt-1 text-xs text-slate-500">Recent tickets booked from this account.</p>
+          <h3 className="font-bold text-white">Ticket Booking History</h3>
+          <p className="mt-1 text-xs text-zinc-400">Recent tickets booked from this account.</p>
         </div>
-        <span className="rounded-full border border-blue-200/60 bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">
+        <span className="rounded-full border border-emerald-500/30 bg-emerald-950/60 px-3 py-1 text-xs font-bold text-emerald-300">
           {tickets?.length ?? 0}
         </span>
       </div>
@@ -140,27 +140,27 @@ export function TicketBookingHistory({ tickets }: { tickets?: TicketBooking[] })
           tickets.map((ticket) => (
             <article
               key={ticket.id}
-              className="rounded-2xl border border-blue-200/60 bg-blue-50/40 p-3.5 shadow-2xs"
+              className="rounded-2xl border border-emerald-500/20 bg-[#111111] p-3.5 shadow-2xs"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-bold text-slate-900">{ticket.drawName}</p>
-                  <p className="mt-1 text-xs font-semibold text-blue-700">{ticket.prize}</p>
+                  <p className="text-sm font-bold text-white">{ticket.drawName}</p>
+                  <p className="mt-1 text-xs font-semibold text-emerald-400">{ticket.prize}</p>
                 </div>
-                <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-bold text-emerald-700">
+                <span className="rounded-full border border-emerald-500/40 bg-emerald-950/60 px-2.5 py-1 text-[10px] font-bold text-emerald-300">
                   {ticket.status.replace("_", " ")}
                 </span>
               </div>
-              <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-slate-600">
-                <span className="rounded-full border border-blue-200/50 bg-white px-2.5 py-1 font-mono font-semibold text-slate-800">{ticket.ticketNumber}</span>
-                <span className="rounded-full border border-blue-200/50 bg-white px-2.5 py-1 font-medium text-slate-600">{ticket.drawTime}</span>
+              <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-zinc-400">
+                <span className="rounded-full border border-zinc-800 bg-[#0a0a0a] px-2.5 py-1 font-mono font-semibold text-emerald-300">{ticket.ticketNumber}</span>
+                <span className="rounded-full border border-zinc-800 bg-[#0a0a0a] px-2.5 py-1 font-medium text-zinc-400">{ticket.drawTime}</span>
               </div>
             </article>
           ))
         ) : (
-          <div className="rounded-2xl border border-dashed border-blue-200 bg-blue-50/40 px-4 py-6 text-center">
-            <p className="text-sm font-semibold text-slate-800">No ticket bookings yet</p>
-            <p className="mt-1 text-xs leading-5 text-slate-500">
+          <div className="rounded-2xl border border-dashed border-zinc-800 bg-[#111111] px-4 py-6 text-center">
+            <p className="text-sm font-semibold text-zinc-300">No ticket bookings yet</p>
+            <p className="mt-1 text-xs leading-5 text-zinc-500">
               Book a draw from the home page and it will appear here.
             </p>
           </div>
