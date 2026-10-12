@@ -83,10 +83,10 @@ export function LiveBookingToast() {
               width: "100%",
               maxWidth: 320,
               borderRadius: 16,
-              background: "#ffffff",
-              border: "1px solid rgba(37, 99, 235, 0.25)",
+              background: "#080808",
+              border: "1px solid rgba(16, 185, 129, 0.3)",
               padding: "12px 16px",
-              boxShadow: "0 10px 30px rgba(37, 99, 235, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05)",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.15)",
               display: "flex",
               gap: 12,
               alignItems: "center",
@@ -102,7 +102,7 @@ export function LiveBookingToast() {
                 left: 0,
                 width: 4,
                 height: "100%",
-                background: "linear-gradient(180deg, #2563eb, #1d4ed8)",
+                background: "linear-gradient(180deg, #10b981, #059669)",
               }}
             />
 
@@ -113,11 +113,11 @@ export function LiveBookingToast() {
                 height: 38,
                 width: 38,
                 borderRadius: 10,
-                background: "rgba(37, 99, 235, 0.1)",
+                background: "rgba(16, 185, 129, 0.15)",
                 alignItems: "center",
                 justifyContent: "center",
-                color: "#1d4ed8",
-                boxShadow: "0 0 8px rgba(37, 99, 235, 0.15)",
+                color: "#10b981",
+                boxShadow: "0 0 8px rgba(16, 185, 129, 0.2)",
                 flexShrink: 0,
               }}
             >
@@ -144,7 +144,7 @@ export function LiveBookingToast() {
                   style={{
                     fontSize: 10,
                     fontWeight: 700,
-                    color: "#059669", // Green Live badge
+                    color: "#10b981", // Green Live badge
                     textTransform: "uppercase",
                     letterSpacing: "0.04em",
                     display: "flex",
@@ -158,8 +158,8 @@ export function LiveBookingToast() {
                       width: 6,
                       height: 6,
                       borderRadius: "50%",
-                      backgroundColor: "#059669",
-                      boxShadow: "0 0 6px #059669",
+                      backgroundColor: "#10b981",
+                      boxShadow: "0 0 6px #10b981",
                       display: "inline-block",
                       animation: "pulse 1.5s infinite"
                     }}
@@ -172,7 +172,7 @@ export function LiveBookingToast() {
                   style={{
                     background: "none",
                     border: "none",
-                    color: "#94a3b8",
+                    color: "#71717a",
                     cursor: "pointer",
                     fontSize: 11,
                     padding: 0,
@@ -187,26 +187,26 @@ export function LiveBookingToast() {
                 style={{
                   fontSize: 13,
                   fontWeight: 500,
-                  color: "#0f172a",
+                  color: "#ffffff",
                   margin: "4px 0 2px",
                   lineHeight: 1.3,
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                <span style={{ fontWeight: 700, color: "#1d4ed8" }}>{booking.name}</span>
-                <span style={{ fontSize: 11, color: "#64748b" }}> ({booking.city})</span>
+                <span style={{ fontWeight: 700, color: "#34d399" }}>{booking.name}</span>
+                <span style={{ fontSize: 11, color: "#a1a1aa" }}> ({booking.city})</span>
               </p>
               
               <p
                 style={{
                   fontSize: 11,
-                  color: "#475569",
+                  color: "#a1a1aa",
                   margin: 0,
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                booked <span style={{ fontWeight: 700, color: "#0f172a" }}>{booking.tickets} tickets</span> of{" "}
-                <span style={{ fontWeight: 600, color: "#1d4ed8", textTransform: "capitalize" }}>{booking.drawName}</span>
+                booked <span style={{ fontWeight: 700, color: "#ffffff" }}>{booking.tickets} tickets</span> of{" "}
+                <span style={{ fontWeight: 600, color: "#34d399", textTransform: "capitalize" }}>{booking.drawName}</span>
               </p>
             </div>
           </motion.div>
